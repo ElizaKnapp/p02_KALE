@@ -3,8 +3,13 @@ SoftDev
 P02 -- Minesweeper
 2022-03-08
 
-elizak -- 2022-03-08 0:30
+elizak -- 2022-03-08 00:30
 - clarified leaderboard description in both spots
 - changed method of generating boards
 - made function of user.py clear
 - added information on the styling
+
+lewiscassl -- 2022-03-08 09:00
+- created a running flask app in __init__.py
+- created a main route in routes.py
+- created basic index template
