@@ -1,0 +1,10 @@
+Team KALE -- Eliza Knapp, Andrew Juang, Ella Krechmer, Lucas Lee
+SoftDev
+P02 -- Minesweeper
+2022-03-08
+
+elizak -- 2022-03-08 0:30
+- clarified leaderboard description in both spots
+- changed method of generating boards
+- made function of user.py clear
+- added information on the styling
