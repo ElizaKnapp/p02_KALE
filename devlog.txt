@@ -16,3 +16,6 @@ lewiscassl -- 2022-03-08 09:00
 
 ellak -- 2022-03-08 09:05
 - added requirements.txt
+
+andrewJ -- 2022-03-08 09:19
+- added basic login/logout/register system
