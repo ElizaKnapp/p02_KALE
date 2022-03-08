@@ -13,3 +13,6 @@ lewiscassl -- 2022-03-08 09:00
 - created a running flask app in __init__.py
 - created a main route in routes.py
 - created basic index template
+
+ellak -- 2022-03-08 09:05
+- added requirements.txt
