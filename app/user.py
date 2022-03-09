@@ -1,7 +1,7 @@
-#Name — Andrew Juang, Eliza Knapp, Patrick Ging, Yuqing Wu
+#Name — Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee
 #Softdev
-#P01: ArRESTed Development
-#2021-12-10
+#P02: Client-Side Shenanigans
+#2022-03-09
 
 import sqlite3
 

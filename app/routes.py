@@ -1,3 +1,8 @@
+#Name — Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee
+#Softdev
+#P02: Client-Side Shenanigans
+#2022-03-09
+
 from flask import render_template, redirect, request, url_for, session
 from app import app
 from app import user
@@ -10,7 +15,7 @@ def index():
 
     # Renders response if there is a user logged in, else render login page
     if 'username' in session:
-        return render_template('response.html',username=session['username'])
+        return render_template('dashboard.html',username=session['username'])
     return render_template('login.html')
 
 # authetication of login
@@ -18,7 +23,7 @@ def index():
 def authenticate():
     ''' Checks whether method is get, post. If get method, then redirect to
        loginpage. If post, then authenticate the username and password, rendering
-       the error page if incorrect and the response.html if correct username/pass. '''
+       the error page if incorrect and the dashboard.html if correct username/pass. '''
 
     # Variables
     method = request.method
