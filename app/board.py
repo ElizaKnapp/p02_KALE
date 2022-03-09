@@ -1,9 +1,11 @@
 import numpy as np
 
 class Board:
-    def __init__(self, size, bombs):
+    def __init__(self, size, bombs, leaderboard, author):
         self.size = size
         self.bombs = bombs
+        self.leaderboard = leaderboard
+        self.author = author
 
     def generate_board(size):
         ''' Generates a board (numpy array) of a certain size '''
@@ -17,5 +19,9 @@ class Board:
         ''' Gets the boards of a user '''
         pass
 
+    def update_leaderboard():
+        ''' Updates the leaderboard '''
+
+    
 # b = Board(2,3)
 # print(b.bombs)
