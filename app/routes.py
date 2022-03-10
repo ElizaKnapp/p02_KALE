@@ -3,6 +3,8 @@ from app import app
 from app import user
 import sqlite3
 
+import numpy as np
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     ''' Display login page if there is no username in session, else display the
@@ -10,7 +12,22 @@ def index():
 
     # Renders response if there is a user logged in, else render login page
     if 'username' in session:
-        return render_template('response.html',username=session['username'])
+
+        # board = np.array([
+        # [0,1,0,0],
+        # [0,0,1,0],
+        # [1,1,0,1],
+        # [0,0,0,0]
+        # ])
+
+        board = '''
+        0100
+        0010
+        1101
+        0000
+        '''
+
+        return render_template('response.html',username=session['username'], board=board)
     return render_template('login.html')
 
 # authetication of login
