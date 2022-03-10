@@ -14,9 +14,11 @@ def index():
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
-    if 'username' in session:
-        return render_template('dashboard.html',username=session['username'])
-    return render_template('login.html')
+    # if 'username' in session:
+    #     return render_template('dashboard.html', username=session['username'])
+    # else:
+    #     return render_template('response.html')
+    return render_template('dashboard.html', isLoggedIn = session.get("username") is not None)
 
 # authetication of login
 @app.route("/auth", methods=['GET','POST'])
@@ -32,7 +34,7 @@ def authenticate():
 
     # Get vs Post
     if method == 'GET':
-        return redirect(url_for('index'))
+        return render_template("login.html")
 
     auth_state = user.auth_user(username, password)
     if auth_state == True:
