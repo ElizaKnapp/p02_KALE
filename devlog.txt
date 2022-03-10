@@ -9,7 +9,7 @@ elizak -- 2022-03-08 00:30
 - made function of user.py clear
 - added information on the styling
 
-lewiscassl -- 2022-03-08 09:00
+lewiscassL -- 2022-03-08 09:00
 - created a running flask app in __init__.py
 - created a main route in routes.py
 - created basic index template
@@ -21,11 +21,18 @@ ellak -- 2022-03-08 09:05
 andrewJ -- 2022-03-08 09:19
 - added basic login/logout/register system
 
+lewiscassL -- 2022-03-09 09:00
+- created canvas and code to divide it
+- passed a board string from python to javascript
+
 elizaK -- 2022-03-09 19:30
 - added headers
 - made game.js which now has a canvas for
-minesweeper and functions to 
+minesweeper and functions to
   - clear canvas
   - draw circles on canvas (to be replaced with actual code)
   - setup the board so the squares are clear to viewer
 - adjusted dashboard.html accordingly ^^
+
+lewiscassL -- 2022-03-10 09:00
+- merged game code, resolved conflicts

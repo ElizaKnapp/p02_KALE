@@ -22,23 +22,23 @@ var setup = (e) => {
   ctx.strokeStyle = 'black';
   ctx.lineWidth = 2;
   // vertical lines
-  for (let i = 0; i < 8; i += 1) {
-    var inc = c.clientWidth / 8;
+  for (let i = 0; i < size; i += 1) {
+    var inc = c.clientWidth / size;
     ctx.beginPath();
     ctx.moveTo(i * inc, 0);
     ctx.lineTo(i * inc, 400);
     ctx.stroke();
   }
   // horizontal lines
-  for (let i = 0; i < 8; i += 1) {
-    var inc = c.clientHeight / 8;
+  for (let i = 0; i < size; i += 1) {
+    var inc = c.clientHeight / size;
     ctx.beginPath();
     ctx.moveTo(0, i * inc);
     ctx.lineTo(400, i * inc);
     ctx.stroke();
   }
 
-  
+
 };
 
 var playGame = (e) => {
@@ -61,4 +61,3 @@ var playGame = (e) => {
 clearButton.addEventListener("click", clear);
 setupButton.addEventListener("click", setup);
 c.addEventListener("click", playGame);
-

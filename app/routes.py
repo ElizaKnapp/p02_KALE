@@ -14,11 +14,13 @@ def index():
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
-    # if 'username' in session:
-    #     return render_template('dashboard.html', username=session['username'])
-    # else:
-    #     return render_template('response.html')
-    return render_template('dashboard.html', isLoggedIn = session.get("username") is not None)
+    board = '''
+    0100
+    0010
+    1101
+    0000
+    '''
+    return render_template('dashboard.html',username=session['username'], board=board, isLoggedIn = session.get("username") is not None)
 
 # authetication of login
 @app.route("/auth", methods=['GET','POST'])
