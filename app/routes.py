@@ -98,3 +98,9 @@ def logout():
         return redirect(url_for('index'))
     # Redirect to login page
     return redirect(url_for('index'))
+
+@app.route("/create")
+def create():
+    if 'username' not in session:
+        return render_template('login.html')
+    return render_template('create.html')
