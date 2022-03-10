@@ -39,3 +39,7 @@ lewiscassL -- 2022-03-10 09:00
 
 elizak -- 2022-03-10 9:24
 - created create route for making your own board
+
+andrewJ -- 2022-03-10 9:30
+- Started the board DB
+- brainstormed ways to store the 2D list of bombs
