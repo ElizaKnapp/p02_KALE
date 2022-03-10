@@ -6,12 +6,19 @@
 */
 
 var c = document.getElementById("board");
-var startButton = document.getElementById("startGame");
 
 var ctx = c.getContext("2d");
 
-var playGame = () => {
-  console.log("playing");
-}
+var requestID;
 
-startButton.addEventListener("click", playGame)
+var playGame = (e) => {
+  console.log("game")
+  mouseX = e.offsetX;
+  mouseY = e.offsetY;
+  ctx.beginPath();
+  ctx.strokeStyle = "red";
+  ctx.arc(mouseX, mouseY, 50, 0, 2 * Math.PI);
+  ctx.stroke();
+};
+
+c.addEventListener("click", playGame)

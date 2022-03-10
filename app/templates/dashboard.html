@@ -14,7 +14,7 @@
   </head>
 
   <style>
-    #playground {border: 3px solid black}
+    #board {border: 2px solid black}
   </style>
 
 
@@ -28,15 +28,11 @@
       Waaaa hooo HAAAH, {{username}}
     </h1>
 
-  
-    <div>
-      <button id="startGame">
-        Click me to start the game!
-      </button>
-    </div>
+    <p>Play Minesweeper!</p>
 
-    <canvas width = "500" heigh = "500" id="board">
-    </canvas>
+    <div>
+      <canvas id="board" width="400" height="400"></canvas>
+    </div>
 
     <script src="/static/js/game.js"></script>
   </body>
