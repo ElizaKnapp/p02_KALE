@@ -42,6 +42,13 @@ var setup = (e) => {
 };
 
 var playGame = (e) => {
+  // TODO!!!
+  // monitor the mouse positions for where you click
+  // run that click through some checker in python
+  // get the result
+  // display accordingly
+
+  // DUMMY CODE MAKES CIRCLES
   console.log("game")
   mouseX = e.offsetX;
   mouseY = e.offsetY;
