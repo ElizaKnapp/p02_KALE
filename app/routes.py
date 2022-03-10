@@ -20,7 +20,7 @@ def index():
     1101
     0000
     '''
-    return render_template('dashboard.html',username=session['username'], board=board, isLoggedIn = session.get("username") is not None)
+    return render_template('dashboard.html', board=board, isLoggedIn = session.get("username") is not None)
 
 # authetication of login
 @app.route("/auth", methods=['GET','POST'])
