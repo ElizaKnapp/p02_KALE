@@ -24,3 +24,15 @@ andrewJ -- 2022-03-08 09:19
 lewiscassL -- 2022-03-09 09:00
 - created canvas and code to divide it
 - passed a board string from python to javascript
+
+elizaK -- 2022-03-09 19:30
+- added headers
+- made game.js which now has a canvas for
+minesweeper and functions to
+  - clear canvas
+  - draw circles on canvas (to be replaced with actual code)
+  - setup the board so the squares are clear to viewer
+- adjusted dashboard.html accordingly ^^
+
+lewiscassL -- 2022-03-10 09:00
+- merged game code, resolved conflicts
