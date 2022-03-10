@@ -38,8 +38,21 @@ var setup = (e) => {
     ctx.stroke();
   }
 
-
+  c.addEventListener("click", playGame);
 };
+
+var getCellStatus = (x, y) =>{
+    return board[y][x];
+};
+
+var colorCell = (x, y) =>{
+    var boxWidth = (c.clientWidth / size);
+    var boxHeight = (c.clientHeight / size)
+    ctx.fillStyle = "red"
+
+    ctx.fillRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight)
+}
+
 
 var playGame = (e) => {
   // TODO!!!
@@ -50,14 +63,18 @@ var playGame = (e) => {
 
   // DUMMY CODE MAKES CIRCLES
   console.log("game")
-  mouseX = e.offsetX;
-  mouseY = e.offsetY;
-  ctx.beginPath();
-  ctx.strokeStyle = "red";
-  ctx.arc(mouseX, mouseY, 50, 0, 2 * Math.PI);
-  ctx.stroke();
+  var mouseX = e.offsetX;
+  var mouseY = e.offsetY;
+
+  var cellX = Math.floor(mouseX / (c.clientWidth / size));
+  var cellY = Math.floor(mouseY / (c.clientHeight / size));
+
+  console.log(getCellStatus(cellX, cellY));
+
+  colorCell(cellX, cellY);
+
+
 };
 
 clearButton.addEventListener("click", clear);
 setupButton.addEventListener("click", setup);
-c.addEventListener("click", playGame);

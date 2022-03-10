@@ -48,8 +48,8 @@
 
     <script type="text/javascript">
         var board = {{board|tojson}}
-        board = board.replace(/(\r\n|\n|\r)/gm, "").replace(/ /g,"");
-        var size = Math.sqrt(board.length);
+        // board = board.replace(/(\r\n|\n|\r)/gm, "").replace(/ /g,"");
+        var size = board.length;
     </script>
 
     <script src="/static/js/game.js"></script>

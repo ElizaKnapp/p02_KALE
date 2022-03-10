@@ -18,12 +18,7 @@ def index():
     # Renders response if there is a user logged in, else render login page
     if 'username' in session:
 
-        board = '''
-        0100
-        0010
-        1101
-        0000
-        '''
+        board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
 
         return render_template('dashboard.html',username=session['username'], board=board)
     return render_template('login.html')
