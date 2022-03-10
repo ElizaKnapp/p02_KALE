@@ -12,8 +12,16 @@ class Board:
         self.leaderboard = leaderboard
         self.author = author
 
-    def generate_board(size):
+    def custom_board(size, level, x, y):
         ''' Generates a board (numpy array) of a certain size '''
+        bombs = 0
+        if (level == 'easy'):
+            bombs = 15
+        # TODO- adjust the bomb numbers for the other levels
+        
+
+
+
         pass
 
     def save_board(board):
