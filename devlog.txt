@@ -37,6 +37,13 @@ minesweeper and functions to
 lewiscassL -- 2022-03-10 09:00
 - merged game code, resolved conflicts
 
+elizak -- 2022-03-10 9:24
+- created create route for making your own board
+
+andrewJ -- 2022-03-10 9:30
+- Started the board DB
+- brainstormed ways to store the 2D list of bombs
+
 lewiscassL -- 2022-03-10 09:30
 - mapping clicks to filling board tiles
 - accessing board data
