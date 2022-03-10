@@ -17,10 +17,16 @@ class Board:
 
     def generate_board(self, size):
         ''' Generates a board (numpy array) of a certain size '''
-
         self.board = [[0 for i in range(size)] for j in range(size)]
         
         
+    def custom_board(size, level, x, y):
+        ''' Generates a board (numpy array) of a certain size '''
+        bombs = 0
+        if (level == 'easy'):
+            bombs = 15
+        # TODO- adjust the bomb numbers for the other levels
+
         pass
 
     def save_board(self, board):
