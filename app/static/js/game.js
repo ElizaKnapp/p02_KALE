@@ -6,10 +6,40 @@
 */
 
 var c = document.getElementById("board");
+var clearButton = document.getElementById("clear");
+var setupButton = document.getElementById("setup");
 
 var ctx = c.getContext("2d");
 
 var requestID;
+
+var clear = (e) => {
+  console.log("clear");
+  ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
+};
+
+var setup = (e) => {
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = 2;
+  // vertical lines
+  for (let i = 0; i < 8; i += 1) {
+    var inc = c.clientWidth / 8;
+    ctx.beginPath();
+    ctx.moveTo(i * inc, 0);
+    ctx.lineTo(i * inc, 400);
+    ctx.stroke();
+  }
+  // horizontal lines
+  for (let i = 0; i < 8; i += 1) {
+    var inc = c.clientHeight / 8;
+    ctx.beginPath();
+    ctx.moveTo(0, i * inc);
+    ctx.lineTo(400, i * inc);
+    ctx.stroke();
+  }
+
+  
+};
 
 var playGame = (e) => {
   console.log("game")
@@ -21,4 +51,7 @@ var playGame = (e) => {
   ctx.stroke();
 };
 
-c.addEventListener("click", playGame)
+clearButton.addEventListener("click", clear);
+setupButton.addEventListener("click", setup);
+c.addEventListener("click", playGame);
+
