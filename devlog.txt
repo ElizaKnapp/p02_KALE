@@ -56,6 +56,4 @@ elizak
 - made it possible to log in 
 - fixed error messages upon logging in
 - made location of user on site clear
-
-TODO:
-- find out what happened to the size and create routes 
+- fixed the board to be a list so it renders properly

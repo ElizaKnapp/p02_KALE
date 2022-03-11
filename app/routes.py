@@ -12,17 +12,21 @@ import numpy as np
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    ''' READ ME!!! 
+        NOTE FOR FUTURE READERS
+        - dashboard is WHEN YOU ARE LOGGED IN
+        - index is when you are NOT logged in
+        - however!!!!!! both can be reached at the endpoint "/" 
+        BECAUSE it depends on whether the username is in session
+    '''
+
     ''' Display login page if there is no username in session, else display the
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
 
-    board = '''
-    0100
-    0010
-    1101
-    0000
-    '''
+    board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
+
     if 'username' in session:
         return render_template('dashboard.html', board = board, isLoggedIn = True, username = session["username"])
     else:
