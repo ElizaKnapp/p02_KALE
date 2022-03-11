@@ -47,3 +47,7 @@ andrewJ -- 2022-03-10 9:30
 lewiscassL -- 2022-03-10 09:30
 - mapping clicks to filling board tiles
 - accessing board data
+
+andrewJ -- 2022-03-10 21:00
+- don't have to log in to use site
+  - didn't thoroughly test it though
