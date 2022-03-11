@@ -25,6 +25,10 @@ lewiscassL -- 2022-03-09 09:00
 - created canvas and code to divide it
 - passed a board string from python to javascript
 
+ellaK -- 2022-03-09 09:15
+- created navbar
+- started working on playing without login
+
 elizaK -- 2022-03-09 19:30
 - added headers
 - made game.js which now has a canvas for
@@ -39,3 +43,6 @@ lewiscassL -- 2022-03-10 09:00
 
 elizak -- 2022-03-10 9:24
 - created create route for making your own board
+
+ellaK -- 2022-03-10 09:26
+- fixed login and signup to allow users to play without logging in (navbar and dashboard change with state)
