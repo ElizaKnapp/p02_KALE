@@ -18,10 +18,15 @@
         </nav>
 
         <h1>Create your own board here!</h1>
-        <form>
-          <input type="text">
-          <input type="submit">
 
-        </form>
+        {% if select %}
+          <h2>Use the board now {{size}}</h2>
+        {% else %}
+          <form action="/create_board" method="POST">
+            Size: 
+            <input name="size" type="text">
+            <input type="submit">
+          </form>
+        {% endif %}
     </body>
 </html>

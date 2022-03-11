@@ -119,4 +119,20 @@ def logout():
 def create():
     if 'username' not in session:
         return render_template('login.html')
-    return render_template('create.html')
+    return render_template('create.html', select = False)
+
+@app.route("/create_board", methods=['GET','POST'])
+def create_board():
+    if 'username' not in session:
+        return render_template('login.html')
+
+    method = request.method
+
+    # Get vs Post
+    if method == 'GET':
+        return redirect(url_for('index'))
+    
+    size = request.form.get('size')
+    print(size)
+
+    return render_template('create.html', size = size, select = True)
