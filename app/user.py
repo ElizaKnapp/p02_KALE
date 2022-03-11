@@ -75,4 +75,4 @@ def create_user(username, password):
 # def percent_lost():
 
 # For testing purposes #################
-# create_db()
+create_db()

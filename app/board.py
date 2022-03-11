@@ -19,8 +19,8 @@ class Board:
         ''' Generates a board (numpy array) of a certain size '''
         self.board = [[0 for i in range(size)] for j in range(size)]
         print(self.board)
-        
-        
+
+
     def custom_board(size, level, x, y):
         ''' Generates a board (numpy array) of a certain size '''
         bombs = 0
@@ -41,7 +41,7 @@ class Board:
     def update_leaderboard(self, leaderboard):
         ''' Updates the leaderboard '''
 
-    
+
 b = Board("board.db", 2, [], [], "bob")
 b.generate_board(2)
 print(b.board)
