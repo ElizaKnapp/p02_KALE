@@ -43,7 +43,7 @@ def auth_user(username, password):
         if password in passwords:
             return "bad_user"
         else:
-            return "not_found"
+            return "bad_user"
 
 
 def create_user(username, password):

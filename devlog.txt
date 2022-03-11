@@ -51,3 +51,11 @@ lewiscassL -- 2022-03-10 09:30
 andrewJ -- 2022-03-10 21:00
 - don't have to log in to use site
   - didn't thoroughly test it though
+
+elizak 
+- made it possible to log in 
+- fixed error messages upon logging in
+- made location of user on site clear
+
+TODO:
+- find out what happened to the size and create routes 

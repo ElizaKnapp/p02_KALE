@@ -18,6 +18,7 @@ class Board:
     def generate_board(self, size):
         ''' Generates a board (numpy array) of a certain size '''
         self.board = [[0 for i in range(size)] for j in range(size)]
+        print(self.board)
         
         
     def custom_board(size, level, x, y):
