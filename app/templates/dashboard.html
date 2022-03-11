@@ -51,9 +51,12 @@
         <canvas id="board" width="400" height="400"></canvas>
     </div>
 
+    {% if not isLoggedIn %}
+    <a href="/auth">Log In or Sign Up</a>
+    {% endif %}
     <script type="text/javascript">
         var board = {{board|tojson}}
-       
+
         var size = board.length;
     </script>
 

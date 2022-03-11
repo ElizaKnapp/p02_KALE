@@ -8,15 +8,13 @@ from app import app
 from app import user
 import sqlite3
 
-import numpy as np
-
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    ''' READ ME!!! 
+    ''' READ ME!!!
         NOTE FOR FUTURE READERS
         - dashboard is WHEN YOU ARE LOGGED IN
         - index is when you are NOT logged in
-        - however!!!!!! both can be reached at the endpoint "/" 
+        - however!!!!!! both can be reached at the endpoint "/"
         BECAUSE it depends on whether the username is in session
     '''
 
@@ -50,7 +48,7 @@ def authenticate():
 
     # Get vs Post
     if method == 'GET':
-        return redirect(url_for('index'))
+        return render_template("login.html")
 
     auth_state = user.auth_user(username, password)
     if auth_state == True:
@@ -131,7 +129,7 @@ def create_board():
     # Get vs Post
     if method == 'GET':
         return redirect(url_for('index'))
-    
+
     size = request.form.get('size')
     print(size)
 
