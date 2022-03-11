@@ -10,17 +10,29 @@ import sqlite3
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    ''' READ ME!!!
+        NOTE FOR FUTURE READERS
+        - dashboard is WHEN YOU ARE LOGGED IN
+        - index is when you are NOT logged in
+        - however!!!!!! both can be reached at the endpoint "/"
+        BECAUSE it depends on whether the username is in session
+    '''
+
     ''' Display login page if there is no username in session, else display the
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
-    board = '''
-    0100
-    0010
-    1101
-    0000
-    '''
-    return render_template('dashboard.html', board=board, isLoggedIn = session.get("username") is not None)
+
+    board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
+
+    if 'username' in session:
+        return render_template('dashboard.html', board = board, isLoggedIn = True, username = session["username"])
+    else:
+        return render_template('index.html', board = board, isLoggedIn = False)
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
 
 # authetication of login
 @app.route("/auth", methods=['GET','POST'])
@@ -46,6 +58,8 @@ def authenticate():
         return render_template('login.html', input="bad_pass")
     elif auth_state == "bad_user":
         return render_template('login.html', input="bad_user")
+    elif auth_state == "not_found":
+        return render_template('login.html')
 
 @app.route("/register")
 def register():
@@ -103,4 +117,20 @@ def logout():
 def create():
     if 'username' not in session:
         return render_template('login.html')
-    return render_template('create.html')
+    return render_template('create.html', select = False)
+
+@app.route("/create_board", methods=['GET','POST'])
+def create_board():
+    if 'username' not in session:
+        return render_template('login.html')
+
+    method = request.method
+
+    # Get vs Post
+    if method == 'GET':
+        return redirect(url_for('index'))
+
+    size = request.form.get('size')
+    print(size)
+
+    return render_template('create.html', size = int(size), select = True)
