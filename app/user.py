@@ -36,7 +36,14 @@ def auth_user(username, password):
         else:
             return "bad_pass"
     else:
-        return "bad_user"
+        c.execute("SELECT passwords FROM users")
+        passwords = []
+        for a_tuple in c.fetchall():
+            passwords.append(a_tuple[0])
+        if password in passwords:
+            return "bad_user"
+        else:
+            return "not_found"
 
 
 def create_user(username, password):

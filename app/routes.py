@@ -16,12 +16,37 @@ def index():
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
-    if 'username' in session:
 
-        board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
+    board = '''
+    0100
+    0010
+    1101
+    0000
+    '''
+    if session.get("username") is not None:
+        return render_template('index.html', board = board, isLoggedIn = True, username = session["username"])
+    else:
+        return render_template('index.html', board = board, isLoggedIn = False)
 
-        return render_template('dashboard.html',username=session['username'], board=board)
-    return render_template('login.html')
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    # return render_template('login.html')
+
+    # Variables
+    method = request.method
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    auth_state = user.auth_user(username, password)
+    if auth_state == True:
+        session['username'] = username
+        return redirect(url_for('index'))
+    elif auth_state == "bad_pass":
+        return render_template('login.html', input="bad_pass")
+    elif auth_state == "bad_user":
+        return render_template('login.html', input="bad_user")
+    elif auth_state == "not_found":
+        return render_template('login.html')
 
 # authetication of login
 @app.route("/auth", methods=['GET','POST'])
@@ -99,9 +124,3 @@ def logout():
         return redirect(url_for('index'))
     # Redirect to login page
     return redirect(url_for('index'))
-
-@app.route("/create")
-def create():
-    if 'username' not in session:
-        return render_template('login.html')
-    return render_template('create.html')
