@@ -66,3 +66,9 @@ elizak
 - fixed the board to be a list so it renders properly
 - implemented the js/html parts of create board functionality
   - todo later: push board state to python/db
+
+lewiscassL -- 2022-03-11 09:30
+- color in tiles based on bomb status
+- created mass tile reveal algorithm for blank squares
+- flagging for unrevealed tiles with right click
+- todo: end game on bomb clicl
