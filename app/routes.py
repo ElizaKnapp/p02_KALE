@@ -135,4 +135,4 @@ def create_board():
     size = request.form.get('size')
     print(size)
 
-    return render_template('create.html', size = size, select = True)
+    return render_template('create.html', size = int(size), select = True)

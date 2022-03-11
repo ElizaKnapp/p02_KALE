@@ -6,17 +6,24 @@
 */
 
 var c = document.getElementById("board");
-var clearButton = document.getElementById("clear");
 var setupButton = document.getElementById("setup");
-
+var doneButton = document.getElementById("done");
 var ctx = c.getContext("2d");
 
-var clear = (e) => {
-  console.log("clear");
-  ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
-};
+// HARD CODED, FIX LATER
+var size = 5;
 
-var setup = (e) => {
+// THE BOARD BEING CREATED
+var board = [];
+for (let i = 0; i < size; i++) {
+  to_add = [];
+  for (let j = 0; j < size; j++) {
+    to_add[j] = 0;
+  }
+  board[i] = to_add;
+}
+
+var setup = () => {
   ctx.strokeStyle = 'black';
   ctx.lineWidth = 2;
   // vertical lines
@@ -39,16 +46,14 @@ var setup = (e) => {
   c.addEventListener("click", playGame);
 };
 
-var getCellStatus = (x, y) =>{
-    return board[y][x];
-};
-
 var colorCell = (x, y) =>{
     var boxWidth = (c.clientWidth / size);
     var boxHeight = (c.clientHeight / size)
     ctx.fillStyle = "red"
-
     ctx.fillRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight)
+
+    // make the red square a bomb!
+    board[x][y] = 1
 }
 
 
@@ -60,12 +65,17 @@ var playGame = (e) => {
   var cellX = Math.floor(mouseX / (c.clientWidth / size));
   var cellY = Math.floor(mouseY / (c.clientHeight / size));
 
-  console.log(getCellStatus(cellX, cellY));
-
   colorCell(cellX, cellY);
 
 
 };
 
-clearButton.addEventListener("click", clear);
+var finish_board = (e) => {
+  console.log("user has decided that this is the final state")
+  console.log(board)
+  // TODO!!
+  // here, pass this board into the python somehow!!!
+}
+
 setupButton.addEventListener("click", setup);
+doneButton.addEventListener("click", finish_board);
