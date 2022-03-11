@@ -57,3 +57,5 @@ elizak
 - fixed error messages upon logging in
 - made location of user on site clear
 - fixed the board to be a list so it renders properly
+- implemented the js/html parts of create board functionality
+  - todo later: push board state to python/db
