@@ -53,12 +53,3 @@ class Board:
 def generate_board(size):
         ''' Generates a board (numpy array) of a certain size '''
         return [[0 for i in range(size)] for j in range(size)]
-
-# TESTING
-b = Board("board.db", 2, "bob")
-# b.generate_board(2)
-db = sqlite3.connect("board.db")
-c = db.cursor()
-c.execute("SELECT board FROM boards")
-board = json.loads(c.fetchall()[0][0])
-print(board[0])
