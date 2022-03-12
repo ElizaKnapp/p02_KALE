@@ -12,6 +12,9 @@ var ctx = c.getContext("2d");
 
 // HARD CODED, FIX LATER
 var size = 5;
+if (size == 0) {
+  size = 1;
+}
 
 // THE BOARD BEING CREATED
 var board = [];
@@ -74,12 +77,11 @@ var finish_board = (e) => {
   console.log("user has decided that this is the final state");
   console.log(board);
 
-  var form = document.getElementById("board_done");
+  var input = document.forms["board_done"]['board'];
+  console.log(input.value);
+  input.setAttribute('value', board);
+  console.log(input.value);
 
-
-  // TODO!!
-  // here, pass this board into the python somehow!!!
-  return board;
 }
 
 setupButton.addEventListener("click", setup);

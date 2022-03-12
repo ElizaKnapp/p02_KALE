@@ -133,9 +133,12 @@ def create_board():
         return redirect(url_for('index'))
 
     size = request.form.get('size')
-    print(size)
+    try:
+        size = int(size)
+    except:
+        size = 0
 
-    return render_template('create.html', size = int(size), select = True)
+    return render_template('create.html', size = size, select = True)
 
 @app.route("/submit_create_board", methods=['GET', 'POST'])
 def submit_create_board():
