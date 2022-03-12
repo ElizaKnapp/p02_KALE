@@ -38,10 +38,14 @@
           <canvas id="board" width="400" height="400"></canvas>
 
           <div>
-            <button id="done">
-              Done
-            </button>
+            <form id="board_done" action="/submit_create_board" method="POST">
+              <button id="done">
+                Done
+              </button>
+              <input type="hidden" name="board">
+            </form>
           </div>
+
         {% else %}
 
           <form action="/create_board" method="POST">

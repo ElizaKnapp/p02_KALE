@@ -59,7 +59,7 @@ andrewJ -- 2022-03-10 21:00
 - don't have to log in to use site
   - didn't thoroughly test it though
 
-elizak
+elizak -- 2022-03-11 00:15
 - made it possible to log in
 - fixed error messages upon logging in
 - made location of user on site clear
@@ -71,4 +71,5 @@ lewiscassL -- 2022-03-11 09:30
 - color in tiles based on bomb status
 - created mass tile reveal algorithm for blank squares
 - flagging for unrevealed tiles with right click
-- todo: end game on bomb clicl
+- todo: end game on bomb click
+

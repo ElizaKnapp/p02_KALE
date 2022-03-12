@@ -71,10 +71,15 @@ var playGame = (e) => {
 };
 
 var finish_board = (e) => {
-  console.log("user has decided that this is the final state")
-  console.log(board)
+  console.log("user has decided that this is the final state");
+  console.log(board);
+
+  var form = document.getElementById("board_done");
+
+
   // TODO!!
   // here, pass this board into the python somehow!!!
+  return board;
 }
 
 setupButton.addEventListener("click", setup);

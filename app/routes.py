@@ -3,6 +3,7 @@
 #P02: Client-Side Shenanigans
 #2022-03-09
 
+from pydoc import render_doc
 from flask import render_template, redirect, request, url_for, session
 from app import app
 from app import user
@@ -23,6 +24,7 @@ def index():
 
     # Renders response if there is a user logged in, else render login page
 
+    # to be replaced with the generate random lists of boards function in board.py
     board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
 
     if 'username' in session:
@@ -134,3 +136,21 @@ def create_board():
     print(size)
 
     return render_template('create.html', size = int(size), select = True)
+
+@app.route("/submit_create_board", methods=['GET', 'POST'])
+def submit_create_board():
+    if 'username' not in session:
+        return render_template('login.html')
+    method = request.method
+    if method == 'GET':
+        return redirect(url_for('index'))
+
+    created_board = request.form.get("board")
+    print(created_board)
+    # TODO: take this baord and put it in the database!
+
+    # then a random board is created to return to dashboard
+    # TODO: replace with the generate random lists of boards function in board.py
+    board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
+
+    return render_template('dashboard.html', board = board, message="board created successfully")
