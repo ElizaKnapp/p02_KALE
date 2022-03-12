@@ -8,6 +8,7 @@ from flask import render_template, redirect, request, url_for, session
 from app import app
 from app import user
 import sqlite3
+import math
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
@@ -149,8 +150,20 @@ def submit_create_board():
         return redirect(url_for('index'))
 
     created_board = request.form.get("board")
-    print(created_board)
-    # TODO: take this baord and put it in the database!
+    board_arr = created_board.split(",")
+    size = int(math.sqrt(len(board_arr)))
+    i = 0
+    db_board = []
+    for j in range(size):
+        to_add = []
+        for k in range(size):
+            to_add.append(board_arr[i])
+            i += 1
+        db_board.append(to_add)
+    print(db_board)
+    # db_board now has to go to the database
+
+
 
     # then a random board is created to return to dashboard
     # TODO: replace with the generate random lists of boards function in board.py
