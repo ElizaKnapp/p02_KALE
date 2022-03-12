@@ -7,6 +7,7 @@ from pydoc import render_doc
 from flask import render_template, redirect, request, url_for, session
 from app import app
 from app import user
+from app import board as B
 import sqlite3
 import math
 
@@ -162,8 +163,7 @@ def submit_create_board():
         db_board.append(to_add)
     print(db_board)
     # db_board now has to go to the database
-
-
+    board_obj = B.Board(size, session['username'], db_board)
 
     # then a random board is created to return to dashboard
     # TODO: replace with the generate random lists of boards function in board.py
