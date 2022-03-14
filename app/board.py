@@ -50,6 +50,21 @@ class Board:
     def update_leaderboard(leaderboard):
         ''' Updates the leaderboard '''
 
+        
 def generate_board(size):
         ''' Generates a board (numpy array) of a certain size '''
         return [[0 for i in range(size)] for j in range(size)]
+    
+
+def get_last5_boards():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+    c.execute("SELECT board FROM boards")
+    board = c.fetchall()
+    print(board)
+    print(len(board))
+    db.commit()
+
+
+get_last5_boards()

@@ -10,8 +10,6 @@ var setupButton = document.getElementById("setup");
 var doneButton = document.getElementById("done");
 var ctx = c.getContext("2d");
 
-// HARD CODED, FIX LATER
-var size = 5;
 if (size == 0) {
   size = 1;
 }
