@@ -23,22 +23,19 @@ source env/bin/activate
 
 - Clone the Repository <br>
 ```
-git clone REPONAME HERE
+git clone p02_KALE
 ``` 
 
 - Install Dependencies <br>
 ```
-cd NAME
+cd p02_KALE
 ```
 ```
 pip install -r requirements.txt
 ```
 - Run the app
 ```
-cd app
-```
-```
-python3 __init__.py
+python3 kale.py
 ```
 
 - Open the website at http://127.0.0.1:5000/
