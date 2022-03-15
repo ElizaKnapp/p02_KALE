@@ -62,9 +62,10 @@ def get_last5_boards():
     c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
     c.execute("SELECT board FROM boards")
     board = c.fetchall()
-    print(board)
-    print(len(board))
-    db.commit()
+    board = board[::-1]
+    return board[:5]
+    
 
-
-get_last5_boards()
+# # TESTING
+# a = Board("board.db", 3, "asdjfklaskdf")
+# print(get_last5_boards())
