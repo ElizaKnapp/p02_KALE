@@ -5,28 +5,35 @@
 #2022-03-09
 */
 
-var c = document.getElementById("board");
-var clearButton = document.getElementById("clear");
-var setupButton = document.getElementById("setup");
+let c = document.getElementById("board");
+let clearButton = document.getElementById("clear");
+let setupButton = document.getElementById("setup");
 
-var ctx = c.getContext("2d");
-var visited = [...Array(size)].map(e => Array(size).fill(false));
+let ctx = c.getContext("2d");
+let visited = [...Array(size)].map(e => Array(size).fill(false));
+let flagged = [...Array(size)].map(e => Array(size).fill(false));
 
-var clear = (e) => {
+let imgArr = [];
+for(let i = 1; i < 9; i++){
+    imgArr[i] = new Image();
+    imgArr[i].src = `static/img/${i}.png`;
+}
+
+let clear = (e) => {
     console.log("clear");
 
     visited = [...Array(size)].map(e => Array(size).fill(false));
     ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
 
-var setup = (e) => {
+let setup = (e) => {
     clear(e);
 
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 2;
     // vertical lines
     for (let i = 0; i < size; i += 1) {
-        var inc = c.clientWidth / size;
+        let inc = c.clientWidth / size;
         ctx.beginPath();
         ctx.moveTo(i * inc, 0);
         ctx.lineTo(i * inc, 400);
@@ -34,7 +41,7 @@ var setup = (e) => {
     }
     // horizontal lines
     for (let i = 0; i < size; i += 1) {
-        var inc = c.clientHeight / size;
+        let inc = c.clientHeight / size;
         ctx.beginPath();
         ctx.moveTo(0, i * inc);
         ctx.lineTo(400, i * inc);
@@ -45,94 +52,57 @@ var setup = (e) => {
     c.addEventListener("contextmenu", flagBomb);
 };
 
-var getCellStatus = (x, y) => {
+let getCellStatus = (x, y) => {
     return board[y][x];
 };
 
-var colorCell = (x, y, color) => {
-    var boxWidth = (c.clientWidth / size);
-    var boxHeight = (c.clientHeight / size);
+let colorCell = (x, y, color) => {
+    let boxWidth = (c.clientWidth / size);
+    let boxHeight = (c.clientHeight / size);
     ctx.fillStyle = color;
 
     ctx.fillRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight);
 }
 
-var imageCell = (x, y, num) => {
-    var boxWidth = (c.clientWidth / size);
-    var boxHeight = (c.clientHeight / size);
+let imageCell = (x, y, num) => {
+    let boxWidth = (c.clientWidth / size);
+    let boxHeight = (c.clientHeight / size);
 
-    var img = new Image();
-    img.onload = () =>{
-        ctx.drawImage(img, x, y, boxWidth, boxHeight);
-    }
-    img.src = `static/img/${num}.png`;
-
-    console.log("image");
-
+    ctx.drawImage(imgArr[num], x * boxWidth, y * boxHeight, boxWidth, boxHeight);
 
 }
 
-var revealTile = (x, y) => {
-    var status = getCellStatus(x, y);
+let revealTile = (x, y) => {
+    let status = getCellStatus(x, y);
 
     if (status == 1 || visited[x][y]) return;
     visited[x][y] = true;
 
-    var sum = 0;
-    var check = [-1, 0, 1];
-    for (var dx of check)
-        for (var dy of check) {
+    let sum = 0;
+    let check = [-1, 0, 1];
+    for (let dx of check)
+        for (let dy of check) {
             if (x + dx >= 0 && x + dx < size && y + dy >= 0 && y + dy < size) {
                 sum += getCellStatus(x + dx, y + dy);
-
                 revealTile(x + dx, y + dy);
             }
         }
 
-    switch (sum) {
-        case 0:
-            colorCell(x, y, "grey");
-            break;
-        case 1:
-            imageCell(x, y, sum);
-            break;
-        case 2:
-            colorCell(x, y, "yellow");
-            break;
-        case 3:
-            colorCell(x, y, "orange");
-            break;
-        case 4:
-            colorCell(x, y, "purple");
-            break;
-        case 5:
-            colorCell(x, y, "brown");
-            break;
-        case 6:
-            colorCell(x, y, "teal");
-            break;
-        case 7:
-            colorCell(x, y, "pink");
-            break;
-        case 8:
-            colorCell(x, y, "olive");
-            break;
-        default:
-
-    }
+    if(sum == 0) colorCell(x, y, "grey");
+    else if(sum <= 8) imageCell(x, y, sum);
 
 }
 
 
-var playGame = (e) => {
+let playGame = (e) => {
     console.log("game")
-    var mouseX = e.offsetX;
-    var mouseY = e.offsetY;
+    let mouseX = e.offsetX;
+    let mouseY = e.offsetY;
 
-    var cellX = Math.floor(mouseX / (c.clientWidth / size));
-    var cellY = Math.floor(mouseY / (c.clientHeight / size));
+    let cellX = Math.floor(mouseX / (c.clientWidth / size));
+    let cellY = Math.floor(mouseY / (c.clientHeight / size));
 
-    var status = getCellStatus(cellX, cellY);
+    let status = getCellStatus(cellX, cellY);
 
     if (status == 0) revealTile(cellX, cellY);
     else if (status == 1) {
@@ -142,16 +112,26 @@ var playGame = (e) => {
 
 };
 
-var flagBomb = (e) => {
+let flagBomb = (e) => {
     e.preventDefault();
 
-    var mouseX = e.offsetX;
-    var mouseY = e.offsetY;
+    let mouseX = e.offsetX;
+    let mouseY = e.offsetY;
 
-    var cellX = Math.floor(mouseX / (c.clientWidth / size));
-    var cellY = Math.floor(mouseY / (c.clientHeight / size));
+    let cellX = Math.floor(mouseX / (c.clientWidth / size));
+    let cellY = Math.floor(mouseY / (c.clientHeight / size));
 
-    if (!visited[cellX][cellY]) colorCell(cellX, cellY, "green");
+
+    if (!visited[cellX][cellY]) {
+        if(!flagged[cellX][cellY]){
+            flagged[cellX][cellY] = true;
+            colorCell(cellX, cellY, "green");
+        }
+        else{
+            flagged[cellX][cellY] = false;
+            colorCell(cellX, cellY, "white");
+        }
+    }
 }
 
 clearButton.addEventListener("click", clear);
