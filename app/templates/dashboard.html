@@ -18,37 +18,39 @@
     #board {
         border: 2px solid black
     }
-    body{
-      padding-left: 10px;
+    .btn{
+        background-color: #4f120b;
+        border: 1px solid black;
     }
 </style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Home</a>
+        <a class="navbar-brand" href="/" style="padding-left: 10px;">Home</a>
         <a class="navbar-brand" href="/create">Create Board</a>
         <a class="navbar-brand" href="/find_boards">See Boards</a>
         <a class="navbar-brand" href="/logout">Logout</a>
     </nav>
 
     {% if username|length >= 1 %}
-    <h1 class="header"> Logged in as {{username}}. To log out, click above.
+    <h1 class="header" style="padding-left: 10px;"> Logged in as {{username}}. To log out, click above.
     </h1>
     {% endif %}
 
-    <h3 style="color:green">{{message}}</h3>
+    <h3 style="color:green; padding-left: 10px;">{{message}}</h3>
 
-    <p>Play Minesweeper!</p>
-    <div>
-        <button id="setup">
+    <p style="padding-left: 10px;">Play Minesweeper!</p>
+    <div style="padding-left: 10px; padding-bottom: 5px;">
+        <button id="setup" class="btn btn-primary">
             Setup
         </button>
-        <button id="clear">
+        <button id="clear" class="btn btn-primary">
             Clear
         </button>
     </div>
 
-    <div>
+
+    <div style="padding-left: 10px;">
         <canvas id="board" width="400" height="400"></canvas>
     </div>
 
