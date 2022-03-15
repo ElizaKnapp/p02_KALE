@@ -29,7 +29,7 @@
             <a class="navbar-brand" href="/" style="padding-left: 10px;">Home</a>
         </nav>
 
-        <h1 class="header" style="padding-left: 10px;"> KALE -- Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee </h1>
+        <h1 class="header" style="padding-left: 10px; padding-top:5px;"> KALE -- Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee </h1>
 
         <!-- <form action="/auth" method="POST" class="standardBlock" style="padding-left: 10px; padding-bottom: 10px;">
             <h4> Enter your username and password below to proceed</h4>
@@ -57,11 +57,11 @@
 
         <h4 class="standardBlock" id="create_option" style="padding-left: 10px;"> New user? <a href="{{ url_for('register') }}">Create an account.</a> </h4>
         {% if input == "success" %}
-            <p style="color:green">*Registration successful! Please login.</p>
+            <p style="color:green; padding-left: 10px;">*Registration successful! Please login.</p>
         {% elif input == "bad_user" %}
-            <p style="color:red">*Username not found. Please try again!</p>
+            <p style="color:red; padding-left: 10px;">*Username not found. Please try again!</p>
         {% elif input == "bad_pass" %}
-            <p style="color:red">*Password incorrect. Please try again!</p>
+            <p style="color:red; padding-left: 10px;">*Password incorrect. Please try again!</p>
         {% endif %}<br>
 
     </body>
