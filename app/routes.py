@@ -175,6 +175,7 @@ def submit_create_board():
 def see():
     if 'username' not in session:
         return render_template('login.html')
-    # find up to 5 random boards from the database
-    # B.get_random_board() DOES NOT WORK BECAUSE NOT IN CLASS IN BOARD.PY
-    return render_template('find_boards.html')
+
+    # FIX FORMATTING
+    boards = B.get_last5_boards()
+    return render_template('find_boards.html', boards = boards)
