@@ -73,6 +73,10 @@ lewiscassL -- 2022-03-11 09:30
 - flagging for unrevealed tiles with right click
 - todo: end game on bomb click
 
+ellaK -- 2022-03-11 09:35
+- changed all padding for pages so that there would be an indent
+- began changing style of forms and buttons
+
 elizak -- 2022-03-11 23:42
 - created board is pushed into python and converted
 - made init of the board object create custom boards too
@@ -100,3 +104,7 @@ andrewj -- 2022-03-15 09:21
 
 elizak -- 2022-03-15 09:21
 - uses the get last five function to see last 5 boards
+
+ellaK -- 2022-03-15 09:24
+- formatted new pages
+- changed color for buttons when you hover over them
