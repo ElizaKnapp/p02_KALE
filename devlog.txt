@@ -82,10 +82,21 @@ elizak -- 2022-03-11 23:42
 elizak and andrewj -- 2022-03-14 09:14
 - made size work in create board
 - made get last item from databse file (not yet done!)
-- made see boards route 
-- made see boards route 
+- made see boards route
+- made see boards route
 
 lewiscassL -- 2022-03-14 09:30
 - different coloring for tiles based on adjacent bombs
 - worked on getting images working to display numbers instead of colors
     - still buggy and only partially working
+
+lewiscassL -- 2022-03-15 09:15
+- got image placement working on the board
+- can flag and unflag cells
+- uploaded placeholder images of numbers
+
+andrewj -- 2022-03-15 09:21
+- created get last five function
+
+elizak -- 2022-03-15 09:21
+- uses the get last five function to see last 5 boards

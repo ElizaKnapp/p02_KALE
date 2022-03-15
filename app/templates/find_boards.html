@@ -22,8 +22,12 @@
         <h1>See some random boards below!</h1>
 
         {% for board in boards%}
-          <p>USERNAME SHOULD BE ACCESSIBLE</p>
-          <p>size: {{board[0]}}</p>
+        <div>
+          <p>FOR TESTING (whole board): {{board[0]}}</p>
+          <p>username: {{board[1]}}</p>
+          <p>size: {{board[2]}}</p>
+          <button></button>
+        </div>
 
         {%endfor%}
 

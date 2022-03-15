@@ -52,20 +52,23 @@ class Board:
 
         
 def generate_board(size):
-        ''' Generates a board (numpy array) of a certain size '''
-        return [[0 for i in range(size)] for j in range(size)]
-    
+    ''' Generates a board (numpy array) of a certain size '''
+    return [[0 for i in range(size)] for j in range(size)]
+
 
 def get_last5_boards():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
-    c.execute("SELECT board FROM boards")
+    c.execute("SELECT * FROM boards")
     board = c.fetchall()
     board = board[::-1]
-    return board[:5]
+    things = []
+    for size, board, leaderboard, author, id in board[:5]:
+        things.append((board, author, size))
+    return things
     
 
-# # TESTING
-# a = Board("board.db", 3, "asdjfklaskdf")
-# print(get_last5_boards())
+# TESTING
+Board(3,"asdjfklaskdf")
+print(get_last5_boards())
