@@ -16,31 +16,38 @@
       #board {
           border: 2px solid black
       }
+      .btn{
+        background-color: #4f120b;
+        border: 1px solid black;
+      }
+      .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+          color: #fff;
+          background-color: #8a2d22;
+          border: 1px solid #4f120b;
+      }
     </style>
 
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/" style="padding-left: 10px;">Home</a>
           <a class="navbar-brand" href="/find_boards">See Boards</a>
           <a class="navbar-brand" href="/logout">Logout</a>
         </nav>
 
-        <h1>Create your own board here!</h1>
+        <h1 style="padding-left: 10px;">Create your own board here!</h1>
 
         {% if select %}
 
           <h2>Here is a {{size}} by {{size}} board. Click the cells you want bombs in.</h2>
-          <div>
-            <button id="setup">
+          <div style="padding-left: 10px; padding-bottom:5px;">
+            <button class="btn btn-primary"id="setup">
               Setup
             </button>
           </div>
-          
-          <canvas id="board" width="400" height="400"></canvas>
-
-          <div>
-              <form id="board_done" action="/submit_create_board" method="POST">
-              <button id="done">
+          <div style="padding-left: 10px;">
+            <canvas id="board" width="400" height="400"></canvas>
+            <form id="board_done" action="/submit_create_board" method="POST">
+              <button class="btn btn-primary" id="done">
                 Done
               </button>
               <input type="hidden" name="board">
@@ -49,15 +56,16 @@
 
         {% else %}
 
-          <form action="/create_board" method="POST">
-            Size: 
+          <form action="/create_board" method="POST" style="padding: 10px;">
+            Size:
             <input name="size" type="text">
-            <input type="submit">
+            <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-          
+
+
         {% endif %}
 
-      <script type="text/javascript">       
+      <script type="text/javascript">
           var size = {{size}};
       </script>
 
