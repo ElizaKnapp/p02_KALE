@@ -21,6 +21,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/find_boards">See Boards</a>
           <a class="navbar-brand" href="/logout">Logout</a>
         </nav>
 
@@ -56,12 +57,10 @@
           
         {% endif %}
 
-        <!--
-        Does not work rn for some reason??? Hard coded size in js for now
       <script type="text/javascript">       
-          var size = size;
+          var size = {{size}};
       </script>
-        -->
+
 
       <script src="/static/js/create.js"></script>
 
