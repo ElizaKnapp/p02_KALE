@@ -78,3 +78,8 @@ elizak -- 2022-03-11 23:42
 - made init of the board object create custom boards too
 - board goes into the database now
 - QUESTION: what's the point of save_board- doesn't init do it?
+
+lewiscassL -- 2022-03-14 09:30
+- different coloring for tiles based on adjacent bombs
+- worked on getting images working to display numbers instead of colors
+    - still buggy and only partially working
