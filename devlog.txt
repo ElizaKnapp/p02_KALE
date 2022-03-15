@@ -94,3 +94,9 @@ lewiscassL -- 2022-03-15 09:15
 - got image placement working on the board
 - can flag and unflag cells
 - uploaded placeholder images of numbers
+
+andrewj -- 2022-03-15 09:21
+- created get last five function
+
+elizak -- 2022-03-15 09:21
+- uses the get last five function to see last 5 boards
