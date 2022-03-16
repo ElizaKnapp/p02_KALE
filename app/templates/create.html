@@ -32,6 +32,10 @@
         nav{
           background-color: #d48077;
         }
+        .form-control-sm{
+          border: 1px solid #CED3DA;
+          padding: 6px;
+        }
     </style>
 
     <body>
@@ -69,8 +73,8 @@
 
           <p style="color:red; padding-left: 10px;">{{message}}</p>
           <form action="/create_board" method="POST" style="padding: 10px;">
-            Size: (please input a size 5 or larger)
-            <input name="size" type="text">
+            Size (please input a size 5 or larger):
+            <input name="size" type="text" class="form-control-sm" placeholder="Enter a number">
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
 
