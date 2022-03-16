@@ -9,6 +9,7 @@ from app import app
 from app import user
 from app import board as B
 import sqlite3
+import json
 import math
 
 @app.route("/", methods=['GET', 'POST'])
@@ -138,8 +139,12 @@ def create_board():
     try:
         size = int(size)
     except:
-        size = 0
+        return render_template('create.html', message="Please enter a valid number")
 
+    if (size < 5):
+        print("running")
+        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
+    
     return render_template('create.html', size = size, select = True)
 
 @app.route("/submit_create_board", methods=['GET', 'POST'])
@@ -191,6 +196,9 @@ def play_usermade_board():
         return redirect(url_for('index'))
 
     board = request.form.get("board")
+    username = request.form.get("username")
     print(board)
+    
+    board = json.loads(board)
 
-    return render_template('play_usermade_board.html', board = board)
+    return render_template('play_usermade_board.html', board = board, username= username)

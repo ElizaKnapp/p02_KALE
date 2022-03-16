@@ -27,6 +27,7 @@
         background-color: #8a2d22;
         border: 1px solid #4f120b;
     }
+<<<<<<< HEAD
     body{
         font-family: Tahoma;
         background-color: #fffceb;
@@ -34,6 +35,8 @@
     nav{
       background-color: #d48077;
     }
+=======
+>>>>>>> ea340d30fc2377df90194d9a6a3c57f184efe5d0
 </style>
 
 <body>
@@ -44,12 +47,38 @@
         <a class="navbar-brand" href="/logout">Logout</a>
     </nav>
 
+<<<<<<< HEAD
     <h1 style="padding-left: 10px; padding-top:10px;">Play a board?</h1>
     <p>
       Here's the board:
       {{board}}
       Now, we would render the same dashboard functionality to
     </p>
+=======
+    <h1>Play {{username}}'s board!</h1>
+
+    <div style="padding-left: 10px; padding-bottom: 5px;">
+        <button id="setup" class="btn btn-primary">
+            Setup
+        </button>
+        <button id="clear" class="btn btn-primary">
+            Clear
+        </button>
+    </div>
+
+
+    <div style="padding-left: 10px;">
+        <canvas id="board" width="400" height="400"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var board = {{board|tojson}}
+
+        var size = board.length;
+    </script>
+
+    <script src="/static/js/game.js"></script>
+>>>>>>> ea340d30fc2377df90194d9a6a3c57f184efe5d0
 </body>
 
 

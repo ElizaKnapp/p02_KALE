@@ -114,6 +114,12 @@ the last five boards
 - you can now click each of the boards to play them,
 however, since we didn't finish playing, it just renders
 
+elizak -- 2022-03-16 09:15
+- fixed the board length error
+- made the create board throw errors if size is bad
+- see boards actually renders the playing game for the
+board you have selected
+
 ellaK -- 2022-03-15 09:15
 - created a new color scheme for site and added it to entire site
 - worked on fixing small details in certain pages (e.g. padding)
