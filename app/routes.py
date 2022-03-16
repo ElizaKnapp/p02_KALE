@@ -139,12 +139,12 @@ def create_board():
     try:
         size = int(size)
     except:
-        size = 0
-    '''
-    print(size)
+        return render_template('create.html', message="Please enter a valid number")
+
     if (size < 5):
-        render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
-    '''
+        print("running")
+        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
+    
     return render_template('create.html', size = size, select = True)
 
 @app.route("/submit_create_board", methods=['GET', 'POST'])

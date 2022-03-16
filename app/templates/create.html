@@ -54,6 +54,10 @@
             </form>
           </div>
 
+          <script type="text/javascript">
+              var size = {{size}};
+          </script>
+
         {% else %}
 
           <p style="color:red; padding-left: 10px;">{{message}}</p>
@@ -63,12 +67,8 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
 
-
         {% endif %}
 
-      <script type="text/javascript">
-          var size = {{size}};
-      </script>
 
 
       <script src="/static/js/create.js"></script>
