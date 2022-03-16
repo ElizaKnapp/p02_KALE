@@ -181,3 +181,16 @@ def see():
     # each element of the list is a tuple
     # [(board, username, size), (board2, username2, size2), (etc, etc, etc)]
     return render_template('find_boards.html', boards = boards)
+
+@app.route("/play_usermade_board", methods=['GET', 'POST'])
+def play_usermade_board():
+    if 'username' not in session:
+        return render_template('login.html')
+    method = request.method
+    if method == 'GET':
+        return redirect(url_for('index'))
+
+    board = request.form.get("board")
+    print(board)
+
+    return render_template('play_usermade_board.html', board = board)

@@ -107,3 +107,9 @@ elizak -- 2022-03-15 09:21
 ellaK -- 2022-03-15 09:24
 - formatted new pages
 - changed color for buttons when you hover over them
+
+elizak -- 2022-03-15 23:30
+- made the find boards function render clearly with attributes
+the last five boards
+- you can now click each of the boards to play them, 
+however, since we didn't finish playing, it just renders
