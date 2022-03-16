@@ -5,6 +5,7 @@
 
 import sqlite3
 import json
+import random
 
 DB_FILE = "discobandit.db"
 
@@ -53,7 +54,14 @@ class Board:
         
 def generate_board(size):
     ''' Generates a board (numpy array) of a certain size '''
-    return [[0 for i in range(size)] for j in range(size)]
+    board = [[0 for i in range(size)] for j in range(size)]
+    num_mines = size
+    for i in range(num_mines):
+        x = random.randrange(0,size)
+        y = random.randrange(0,size)
+        board[x][y] = 1
+    print(board)
+    return board
 
 
 def get_last5_boards():
@@ -69,6 +77,6 @@ def get_last5_boards():
     return things
     
 
-# TESTING
-Board(3,"asdjfklaskdf")
-print(get_last5_boards())
+# # TESTING
+# Board(3,"asdjfklaskdf")
+# print(get_last5_boards())

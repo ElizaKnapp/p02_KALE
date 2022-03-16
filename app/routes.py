@@ -28,7 +28,8 @@ def index():
     # Renders response if there is a user logged in, else render login page
 
     # to be replaced with the generate random lists of boards function in board.py
-    board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
+    board = B.generate_board(10)
+    print(board)
 
     if 'username' in session:
         return render_template('dashboard.html', board = board, isLoggedIn = True, username = session["username"])
@@ -201,4 +202,4 @@ def play_usermade_board():
     
     board = json.loads(board)
 
-    return render_template('play_usermade_board.html', board = board, username= username)
+    return render_template('play_usermade_board.html', board = board, username = username)
