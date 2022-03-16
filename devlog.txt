@@ -111,5 +111,11 @@ ellaK -- 2022-03-15 09:24
 elizak -- 2022-03-15 23:30
 - made the find boards function render clearly with attributes
 the last five boards
-- you can now click each of the boards to play them, 
+- you can now click each of the boards to play them,
 however, since we didn't finish playing, it just renders
+
+ellaK -- 2022-03-15 09:15
+- created a new color scheme for site and added it to entire site
+- worked on fixing small details in certain pages (e.g. padding)
+- started trying to do hover on navbar items, unsuccessful for now
+- deleted unneeded files

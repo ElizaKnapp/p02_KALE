@@ -27,10 +27,17 @@
         background-color: #8a2d22;
         border: 1px solid #4f120b;
     }
+    body{
+        font-family: Tahoma;
+        background-color: #fffceb;
+    }
+    nav{
+      background-color: #d48077;
+    }
 </style>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light ">
         <a class="navbar-brand" href="/" style="padding-left: 10px;">Home</a>
         <a class="navbar-brand" href="/create">Create Board</a>
         <a class="navbar-brand" href="/find_boards">See Boards</a>
@@ -38,7 +45,7 @@
     </nav>
 
     {% if username|length >= 1 %}
-    <h1 class="header" style="padding-left: 10px;"> Logged in as {{username}}. To log out, click above.
+    <h1 class="header" style="padding-left: 10px; padding-top:10px;"> Logged in as {{username}}. To log out, click above.
     </h1>
     {% endif %}
 
