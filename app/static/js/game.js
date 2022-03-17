@@ -6,12 +6,23 @@
 */
 
 let c = document.getElementById("board");
+let ctx = c.getContext("2d");
+
 let clearButton = document.getElementById("clear");
 let setupButton = document.getElementById("setup");
 
-let ctx = c.getContext("2d");
 let visited = [...Array(size)].map(e => Array(size).fill(false));
 let flagged = [...Array(size)].map(e => Array(size).fill(false));
+
+let nVisited = 0;
+let nBombs = 0;
+for (let row of board){
+    const count = row.filter(Boolean).length;
+    nBombs += count;
+}
+let nSafe = size*size - nBombs;
+
+const borderWidth = 2;
 
 let imgArr = [];
 for(let i = 1; i < 9; i++){
@@ -30,13 +41,14 @@ let setup = (e) => {
     clear(e);
 
     ctx.strokeStyle = 'black';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = borderWidth;
+
     // vertical lines
     for (let i = 0; i < size; i += 1) {
         let inc = c.clientWidth / size;
         ctx.beginPath();
         ctx.moveTo(i * inc, 0);
-        ctx.lineTo(i * inc, 400);
+        ctx.lineTo(i * inc, c.clientHeight);
         ctx.stroke();
     }
     // horizontal lines
@@ -44,13 +56,18 @@ let setup = (e) => {
         let inc = c.clientHeight / size;
         ctx.beginPath();
         ctx.moveTo(0, i * inc);
-        ctx.lineTo(400, i * inc);
+        ctx.lineTo(c.clientWidth, i * inc);
         ctx.stroke();
     }
 
     c.addEventListener("click", playGame);
     c.addEventListener("contextmenu", flagBomb);
 };
+
+let endGame = () => {
+    c.removeEventListener("click", playGame);
+    c.removeEventListener("contextmenu", flagBomb);
+}
 
 let getCellStatus = (x, y) => {
     return board[y][x];
@@ -61,22 +78,23 @@ let colorCell = (x, y, color) => {
     let boxHeight = (c.clientHeight / size);
     ctx.fillStyle = color;
 
-    ctx.fillRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight);
+    ctx.fillRect(x * boxWidth + borderWidth/2, y * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
 }
 
 let imageCell = (x, y, num) => {
     let boxWidth = (c.clientWidth / size);
     let boxHeight = (c.clientHeight / size);
 
-    ctx.drawImage(imgArr[num], x * boxWidth, y * boxHeight, boxWidth, boxHeight);
+    ctx.drawImage(imgArr[num], x * boxWidth + borderWidth/2, y * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
 
 }
 
 let revealTile = (x, y) => {
     let status = getCellStatus(x, y);
 
-    if (status == 1 || visited[x][y]) return;
-    visited[x][y] = true;
+    if (status == 1 || visited[y][x]) return;
+    visited[y][x] = true;
+    nVisited++;
 
     let sum = 0;
     let check = [-1, 0, 1];
@@ -90,6 +108,11 @@ let revealTile = (x, y) => {
 
     if(sum == 0) colorCell(x, y, "grey");
     else if(sum <= 8) imageCell(x, y, sum);
+
+    if(nVisited == nSafe){
+        console.log("win");
+        endGame();
+    }
 
 }
 
@@ -107,7 +130,7 @@ let playGame = (e) => {
     if (status == 0) revealTile(cellX, cellY);
     else if (status == 1) {
         colorCell(cellX, cellY, "red");
-        // end game here
+        endGame();
     }
 
 };
@@ -122,13 +145,13 @@ let flagBomb = (e) => {
     let cellY = Math.floor(mouseY / (c.clientHeight / size));
 
 
-    if (!visited[cellX][cellY]) {
-        if(!flagged[cellX][cellY]){
-            flagged[cellX][cellY] = true;
+    if (!visited[cellY][cellX]) {
+        if(!flagged[cellY][cellX]){
+            flagged[cellY][cellX] = true;
             colorCell(cellX, cellY, "green");
         }
         else{
-            flagged[cellX][cellY] = false;
+            flagged[cellY][cellX] = false;
             colorCell(cellX, cellY, "white");
         }
     }

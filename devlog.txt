@@ -94,3 +94,8 @@ lewiscassL -- 2022-03-15 09:15
 - got image placement working on the board
 - can flag and unflag cells
 - uploaded placeholder images of numbers
+
+lewiscassL -- 2022-03-16 09:30
+- calculated end-game win and lose conditions
+- stop user input on bomb click or all safe spots revealed
+- TODO: fix an issue with revealing too many squares
