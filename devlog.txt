@@ -147,3 +147,6 @@ andrewJ -- 2022-03-17 09:23
 ellaK -- 2022-03-17 09:26
 - more basic formatting
 - added color change for hover over navbar
+
+ellaK -- 2022-03-17 10:53
+- fixed color change for hover over navbar! (correct colors, full navbar filled in)
