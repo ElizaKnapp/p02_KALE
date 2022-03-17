@@ -44,14 +44,15 @@
         <a class="navbar-brand" href="/logout">Logout</a>
     </nav>
 
+    <h1 class="header" style="padding-left: 10px; padding-top: 10px;">Play Minesweeper!</h1>
+
     {% if username|length >= 1 %}
-    <h1 class="header" style="padding-left: 10px; padding-top:10px;"> Logged in as {{username}}. To log out, click above.
-    </h1>
+    <p style="padding-left: 10px;"> Logged in as {{username}}. To log out, click above.</p>
     {% endif %}
 
     <h3 style="color:green; padding-left: 10px;">{{message}}</h3>
 
-    <p style="padding-left: 10px;">Play Minesweeper!</p>
+
     <div style="padding-left: 10px; padding-bottom: 5px;">
         <button id="setup" class="btn btn-primary">
             Setup
