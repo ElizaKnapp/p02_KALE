@@ -22,8 +22,27 @@ for (let row of board){
 }
 let nSafe = size*size - nBombs;
 
-const borderWidth = 2;
+let getCellStatus = (x, y) => {
+    return board[y][x];
+};
+let nums = [...Array(size)].map(e => Array(size).fill(0));
+let calculateNum = (x, y) => {
+    let sum = 0;
+    let check = [-1, 0, 1];
+    for (let dx of check)
+        for (let dy of check) {
+            if (x + dx >= 0 && x + dx < size && y + dy >= 0 && y + dy < size) {
+                sum += getCellStatus(x + dx, y + dy);
+            }
+        }
+    return sum;
+}
 
+for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
+    nums[y][x] = calculateNum(x, y);
+}
+
+const borderWidth = 2;
 let imgArr = [];
 for(let i = 1; i < 9; i++){
     imgArr[i] = new Image();
@@ -39,6 +58,17 @@ let clear = (e) => {
 
 let setup = (e) => {
     clear(e);
+
+    visited = [...Array(size)].map(e => Array(size).fill(false));
+    flagged = [...Array(size)].map(e => Array(size).fill(false));
+
+    nVisited = 0;
+    nBombs = 0;
+    for (let row of board){
+        const count = row.filter(Boolean).length;
+        nBombs += count;
+    }
+    nSafe = size*size - nBombs;
 
     ctx.strokeStyle = 'black';
     ctx.lineWidth = borderWidth;
@@ -69,10 +99,6 @@ let endGame = () => {
     c.removeEventListener("contextmenu", flagBomb);
 }
 
-let getCellStatus = (x, y) => {
-    return board[y][x];
-};
-
 let colorCell = (x, y, color) => {
     let boxWidth = (c.clientWidth / size);
     let boxHeight = (c.clientHeight / size);
@@ -82,6 +108,7 @@ let colorCell = (x, y, color) => {
 }
 
 let imageCell = (x, y, num) => {
+    console.log("image", x, y, num);
     let boxWidth = (c.clientWidth / size);
     let boxHeight = (c.clientHeight / size);
 
@@ -90,23 +117,26 @@ let imageCell = (x, y, num) => {
 }
 
 let revealTile = (x, y) => {
+    console.log(x, y);
     let status = getCellStatus(x, y);
 
     if (status == 1 || visited[y][x]) return;
     visited[y][x] = true;
     nVisited++;
 
-    let sum = 0;
-    let check = [-1, 0, 1];
-    for (let dx of check)
-        for (let dy of check) {
-            if (x + dx >= 0 && x + dx < size && y + dy >= 0 && y + dy < size) {
-                sum += getCellStatus(x + dx, y + dy);
-                revealTile(x + dx, y + dy);
-            }
-        }
+    let sum = nums[y][x];
 
-    if(sum == 0) colorCell(x, y, "grey");
+    if(sum == 0) {
+        colorCell(x, y, "grey");
+
+        let check = [-1, 0, 1];
+        for (let dx of check)
+            for (let dy of check) {
+                if (x + dx >= 0 && x + dx < size && y + dy >= 0 && y + dy < size) {
+                    revealTile(x + dx, y + dy);
+                }
+            }
+    }
     else if(sum <= 8) imageCell(x, y, sum);
 
     if(nVisited == nSafe){

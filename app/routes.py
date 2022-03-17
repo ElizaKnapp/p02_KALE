@@ -201,5 +201,6 @@ def play_usermade_board():
     print(board)
 
     board = json.loads(board)
+    board = [[int(num) for num in row] for row in board]
 
     return render_template('play_usermade_board.html', board = board, username = username)
