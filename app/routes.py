@@ -145,7 +145,7 @@ def create_board():
     if (size < 5):
         print("running")
         return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
-    
+
     return render_template('create.html', size = size, select = True)
 
 @app.route("/submit_create_board", methods=['GET', 'POST'])
@@ -175,7 +175,7 @@ def submit_create_board():
     # TODO: replace with the generate random lists of boards function in board.py
     board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
 
-    return render_template('dashboard.html', board = board, message="board created successfully")
+    return render_template('dashboard.html', board = board, message="Board Created Successfully!")
 
 @app.route("/find_boards", methods=['GET', 'POST'])
 def see():
@@ -199,7 +199,7 @@ def play_usermade_board():
     board = request.form.get("board")
     username = request.form.get("username")
     print(board)
-    
+
     board = json.loads(board)
 
     return render_template('play_usermade_board.html', board = board, username = username)
