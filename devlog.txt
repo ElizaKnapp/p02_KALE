@@ -135,3 +135,7 @@ ellaK -- 2022-03-16 09:58
 - changed Create input to match other styles
 - changed colors for see boards table
 
+lewiscassL -- 2022-03-17 09:20
+- now precalculate bomb numbers
+- properly reset variables on setup
+- properly reveal correct number of squares based on bomb numbers
