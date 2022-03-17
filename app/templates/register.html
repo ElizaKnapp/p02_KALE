@@ -13,38 +13,37 @@
     </head>
 
     <style>
-      .form-control{
-        size: "20";
-      }
-      .btn{
-        background-color: #4f120b;
-        border: 2px solid #4f120b;
-      }
+        #board {
+            border: 2px solid black
+        }
+        .btn{
+          background-color: #4f120b;
+          border: 1px solid black;
+        }
+        .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+            color: #fff;
+            background-color: #8a2d22;
+            border: 1px solid #4f120b;
+        }
+        body{
+            font-family: Tahoma;
+            background-color: #fffceb;
+        }
+        nav{
+          background-color: #d48077;
+        }
     </style>
 
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/" style="padding-left: 10px;">Home</a>
             <a class="navbar-brand" href="/login" >Login</a>
         </nav>
-        <h1 class="header" style="padding-left: 10px; padding-top:5px;"> KALE -- Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee </h1>
-
-        <!-- currently just displays register ability,
-                when user registers, for now, it will just return them to login page
-                does not connect to database yet- will have to implement later
-                will also have to implement error message when register fails- username taken, confirm password fails, etc.
-        -->
-        <!-- <form action="/rAuth" method="POST" class="standardBlock" style="padding:10px;">
-            <h4> Enter a new username and password below to proceed</h4>
-            <input type="text" name="username" placeholder="Username"><br>
-            <input type="password" name="password0", placeholder="Password"><br>
-            <input type="password" name="password1", placeholder="Confirm password"><br><br>
-            <input type="submit" name="sub1" value="Register">
-        </form> -->
+        <h1 class="header" style="padding-left: 10px; padding-top:10px;"> KALE -- Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee </h1>
 
 
-        <form action="/rAuth" method="POST" class="standardBlock" style="padding: 10px;">
+        <form action="/rAuth" method="POST" class="standardBlock" style="padding: 10px; ">
           <h4> Enter a new username and password below to proceed</h4>
           <div class="col-sm-2">
             <label for="exampleUser" style="padding-bottom:7px;">Username</label>

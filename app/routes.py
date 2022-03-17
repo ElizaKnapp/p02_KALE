@@ -9,6 +9,7 @@ from app import app
 from app import user
 from app import board as B
 import sqlite3
+import json
 import math
 
 @app.route("/", methods=['GET', 'POST'])
@@ -27,7 +28,8 @@ def index():
     # Renders response if there is a user logged in, else render login page
 
     # to be replaced with the generate random lists of boards function in board.py
-    board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
+    board = B.generate_board(10)
+    print(board)
 
     if 'username' in session:
         return render_template('dashboard.html', board = board, isLoggedIn = True, username = session["username"])
@@ -138,8 +140,12 @@ def create_board():
     try:
         size = int(size)
     except:
-        size = 0
+        return render_template('create.html', message="Please enter a valid number")
 
+    if (size < 5):
+        print("running")
+        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
+    
     return render_template('create.html', size = size, select = True)
 
 @app.route("/submit_create_board", methods=['GET', 'POST'])
@@ -181,3 +187,19 @@ def see():
     # each element of the list is a tuple
     # [(board, username, size), (board2, username2, size2), (etc, etc, etc)]
     return render_template('find_boards.html', boards = boards)
+
+@app.route("/play_usermade_board", methods=['GET', 'POST'])
+def play_usermade_board():
+    if 'username' not in session:
+        return render_template('login.html')
+    method = request.method
+    if method == 'GET':
+        return redirect(url_for('index'))
+
+    board = request.form.get("board")
+    username = request.form.get("username")
+    print(board)
+    
+    board = json.loads(board)
+
+    return render_template('play_usermade_board.html', board = board, username = username)

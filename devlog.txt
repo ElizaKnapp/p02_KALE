@@ -73,6 +73,10 @@ lewiscassL -- 2022-03-11 09:30
 - flagging for unrevealed tiles with right click
 - todo: end game on bomb click
 
+ellaK -- 2022-03-11 09:35
+- changed all padding for pages so that there would be an indent
+- began changing style of forms and buttons
+
 elizak -- 2022-03-11 23:42
 - created board is pushed into python and converted
 - made init of the board object create custom boards too
@@ -82,7 +86,6 @@ elizak -- 2022-03-11 23:42
 elizak and andrewj -- 2022-03-14 09:14
 - made size work in create board
 - made get last item from databse file (not yet done!)
-- made see boards route
 - made see boards route
 
 lewiscassL -- 2022-03-14 09:30
@@ -95,7 +98,40 @@ lewiscassL -- 2022-03-15 09:15
 - can flag and unflag cells
 - uploaded placeholder images of numbers
 
+andrewj -- 2022-03-15 09:21
+- created get last five function
+
+elizak -- 2022-03-15 09:21
+- uses the get last five function to see last 5 boards
+
+ellaK -- 2022-03-15 09:24
+- formatted new pages
+- changed color for buttons when you hover over them
+
+elizak -- 2022-03-15 23:30
+- made the find boards function render clearly with attributes
+the last five boards
+- you can now click each of the boards to play them,
+however, since we didn't finish playing, it just renders
+
+elizak -- 2022-03-16 09:15
+- fixed the board length error
+- made the create board throw errors if size is bad
+- see boards actually renders the playing game for the
+board you have selected
+
+ellaK -- 2022-03-15 09:15
+- created a new color scheme for site and added it to entire site
+- worked on fixing small details in certain pages (e.g. padding)
+- started trying to do hover on navbar items, unsuccessful for now
+- deleted unneeded files
+
 lewiscassL -- 2022-03-16 09:30
 - calculated end-game win and lose conditions
 - stop user input on bomb click or all safe spots revealed
 - TODO: fix an issue with revealing too many squares
+
+ellaK -- 2022-03-16 09:58
+- changed Create input to match other styles
+- changed colors for see boards table
+
