@@ -76,7 +76,27 @@ def get_last5_boards():
         things.append((board, author, size))
     return things
     
+def find_boards(username):
+    ''' returns the all of the board, author, size of a specific user'''
+    
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+    c.execute("SELECT * FROM boards")
+    board = c.fetchall()
+    board = board[::-1]
+    things = []
+    for size, board, leaderboard, author, id in board[:5]:
+        if author == username:
+            things.append((board, author, size))
+    return things
 
-# # TESTING
-# Board(3,"asdjfklaskdf")
-# print(get_last5_boards())
+
+# TESTING
+# Board(2, "andre", [])
+# db = sqlite3.connect(DB_FILE)
+# c = db.cursor()
+# c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+# c.execute("SELECT * FROM boards")
+# board = c.fetchall()
+# print(find_boards("andrew"))
