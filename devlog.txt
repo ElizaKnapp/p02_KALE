@@ -158,6 +158,7 @@ lewiscassL -- 2022-03-18 09:00
 andrewJ -- 2022-03-18 09:16
 - can view other users boards in a dashboard
 - moved logout button to the right
+- cant make board size > 25
 
 elizak -- 2022-03-18 9:25
 - you can now play at different levels
