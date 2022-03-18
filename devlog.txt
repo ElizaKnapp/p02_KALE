@@ -163,3 +163,7 @@ andrewJ -- 2022-03-18 09:16
 elizak -- 2022-03-18 9:25
 - you can now play at different levels
 - also the board is bigger
+
+ellaK -- 2022-03-18 09:36
+- finished formatting for everything that was there
+- deployed app
