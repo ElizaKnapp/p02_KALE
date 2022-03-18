@@ -55,7 +55,13 @@ class Board:
 def generate_board(size):
     ''' Generates a board (numpy array) of a certain size '''
     board = [[0 for i in range(size)] for j in range(size)]
-    num_mines = size
+    if size < 15:
+        num_mines = size
+    elif size < 20:
+        num_mines = size * 2
+    elif size < 40:
+        num_mines = size * 4
+
     for i in range(num_mines):
         x = random.randrange(0,size)
         y = random.randrange(0,size)
