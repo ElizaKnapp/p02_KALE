@@ -152,9 +152,9 @@ def create_board():
     except:
         return render_template('create.html', message="Please enter a valid number")
 
-    if (size < 5):
+    if (size < 5 or size > 25):
         print("running")
-        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
+        return render_template('create.html', size=size, message = "Your board must between sizes 5 and 25!", select=False)
 
     return render_template('create.html', size = size, select = True)
 
