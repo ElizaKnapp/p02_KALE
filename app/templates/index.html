@@ -56,8 +56,23 @@
         </button>
     </div>
 
+    <div>
+        <form action="/" method="POST">
+            <input type="hidden" name="level" value="10">
+            <input type="submit" value="Easy">
+        </form>
+        <form action="/" method="POST">
+            <input type="hidden" name="level" value="17">
+            <input type="submit" value="Medium">
+        </form>
+        <form action="/" method="POST">
+            <input type="hidden" name="level" value="20">
+            <input type="submit" value="Hard">
+        </form>
+    </div>
+
     <div style="padding-left: 10px;">
-        <canvas id="board" width="400" height="400"></canvas>
+        <canvas id="board" width="600" height="600"></canvas>
     </div>
 
     <script type="text/javascript">

@@ -26,10 +26,19 @@ def index():
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
+    method = request.method
+    if method == 'GET':
+        return render_template("index.html", board = B.generate_board(10), isLoggedIn=False)
 
-    # to be replaced with the generate random lists of boards function in board.py
-    board = B.generate_board(10)
-    print(board)
+    level = 10
+    x = request.form.get('level')
+    try:
+        level = int(x)
+    except:
+        level = 10
+    
+    print(level)
+    board = B.generate_board(level)
 
     if 'username' in session:
         return render_template('dashboard.html', board = board, isLoggedIn = True, username = session["username"])
@@ -49,12 +58,13 @@ def authenticate():
 
     # Variables
     method = request.method
-    username = request.form.get('username')
-    password = request.form.get('password')
 
     # Get vs Post
     if method == 'GET':
         return render_template("login.html")
+
+    username = request.form.get('username')
+    password = request.form.get('password')
 
     auth_state = user.auth_user(username, password)
     if auth_state == True:
