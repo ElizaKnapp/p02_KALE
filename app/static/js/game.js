@@ -53,13 +53,6 @@ let clear = (e) => {
     console.log("clear");
 
     visited = [...Array(size)].map(e => Array(size).fill(false));
-    ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
-};
-
-let setup = (e) => {
-    clear(e);
-
-    visited = [...Array(size)].map(e => Array(size).fill(false));
     flagged = [...Array(size)].map(e => Array(size).fill(false));
 
     nVisited = 0;
@@ -69,6 +62,17 @@ let setup = (e) => {
         nBombs += count;
     }
     nSafe = size*size - nBombs;
+
+    let message = document.getElementById("message");
+    if(document.contains(message)) message.remove();
+
+
+    ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
+};
+
+let setup = (e) => {
+    clear(e);
+
 
     ctx.strokeStyle = 'black';
     ctx.lineWidth = borderWidth;
@@ -94,9 +98,15 @@ let setup = (e) => {
     c.addEventListener("contextmenu", flagBomb);
 };
 
-let endGame = () => {
+let endGame = (message) => {
     c.removeEventListener("click", playGame);
     c.removeEventListener("contextmenu", flagBomb);
+
+    let p = document.createElement("p");
+    p.innerHTML = message;
+    p.id = "message";
+
+    c.parentElement.appendChild(p);
 }
 
 let colorCell = (x, y, color) => {
@@ -141,7 +151,7 @@ let revealTile = (x, y) => {
 
     if(nVisited == nSafe){
         console.log("win");
-        endGame();
+        endGame("You Win!");
     }
 
 }
@@ -159,8 +169,9 @@ let playGame = (e) => {
 
     if (status == 0) revealTile(cellX, cellY);
     else if (status == 1) {
+        console.log("lose");
         colorCell(cellX, cellY, "red");
-        endGame();
+        endGame("You Lose!");
     }
 
 };

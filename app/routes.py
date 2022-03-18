@@ -214,3 +214,12 @@ def play_usermade_board():
     board = [[int(num) for num in row] for row in board]
 
     return render_template('play_usermade_board.html', board = board, username = username)
+
+
+@app.route("/dashboard/<username>", methods=['GET', 'POST'])
+def dashboard(username):
+    ''' Displays currently logged in user's dashboard '''
+
+    boards = B.find_boards(username)
+
+    return render_template('otherdashboard.html', username=username, boards=boards)
