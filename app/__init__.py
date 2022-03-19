@@ -14,4 +14,8 @@ from app import routes
 app.secret_key = urandom(32)
 
 app.debug = True
+<<<<<<< HEAD
 app.run(host='0.0.0.0')
+=======
+app.run()
+>>>>>>> c62c46dbfd19465de4a3c5f01c8690ca3cc85cc2

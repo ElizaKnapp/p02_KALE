@@ -86,22 +86,28 @@
         </button>
     </div>
 
-    <div>
-        <form action="/" method="POST">
+    <div class="row">
+      <div class="col-sm">
+        <form action="/" method="POST" style="padding-left:10px;">
             <input type="hidden" name="level" value="10">
-            <input type="submit" value="Easy">
+            <button type="submit" id="easy" class="btn btn-primary">Easy</button>
         </form>
+      </div>
+      <div class="col">
         <form action="/" method="POST">
             <input type="hidden" name="level" value="17">
-            <input type="submit" value="Medium">
+            <button type="submit" id="medium" class="btn btn-primary">Medium</button>
         </form>
+      </div>
+      <div class="col-10">
         <form action="/" method="POST">
             <input type="hidden" name="level" value="20">
-            <input type="submit" value="Hard">
+            <button type="submit" id="hard" class="btn btn-primary">Hard</button>
         </form>
+      </div>
     </div>
 
-    <div style="padding-left: 10px;">
+    <div style="padding-left: 10px; padding-top:7px;">
         <canvas id="board" width="600" height="600"></canvas>
     </div>
 
