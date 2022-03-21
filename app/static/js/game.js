@@ -8,8 +8,7 @@
 let c = document.getElementById("board");
 let ctx = c.getContext("2d");
 
-let clearButton = document.getElementById("clear");
-let setupButton = document.getElementById("setup");
+let restartButton = document.getElementById("restart");
 
 let visited = [...Array(size)].map(e => Array(size).fill(false));
 let flagged = [...Array(size)].map(e => Array(size).fill(false));
@@ -88,8 +87,10 @@ let clear = (e) => {
     }
     nSafe = size*size - nBombs;
 
+    stopTimer();
     document.getElementById("message").innerHTML = "";
     document.getElementById("timer").innerHTML = "";
+
 
     score = 0;
     intervalID = -1;
@@ -226,5 +227,5 @@ let flagBomb = (e) => {
     }
 }
 
-clearButton.addEventListener("click", clear);
-setupButton.addEventListener("click", setup);
+setup();
+restartButton.addEventListener("click", setup);
