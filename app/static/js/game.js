@@ -49,6 +49,31 @@ for(let i = 1; i < 9; i++){
     imgArr[i].src = `static/img/${i}.png`;
 }
 
+let startTime = new Date().getTime();
+let intervalID = -1;
+let score = 0;
+
+let updateDisplay = (time) => {
+    let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+}
+
+let stopTimer = () => {
+    score = new Date().getTime() - startTime;
+    clearInterval(intervalID);
+}
+
+let startTimer = () => {
+    startTime =  new Date().getTime();
+    intervalID = setInterval(() => {
+        updateDisplay(new Date().getTime() - startTime);
+    }, 1);
+}
+
+
 let clear = (e) => {
     console.log("clear");
 
@@ -63,9 +88,11 @@ let clear = (e) => {
     }
     nSafe = size*size - nBombs;
 
-    let message = document.getElementById("message");
-    if(document.contains(message)) message.remove();
+    document.getElementById("message").innerHTML = "";
+    document.getElementById("timer").innerHTML = "";
 
+    score = 0;
+    intervalID = -1;
 
     ctx.clearRect(0, 0, c.clientWidth, c.clientHeight);
 };
@@ -102,11 +129,9 @@ let endGame = (message) => {
     c.removeEventListener("click", playGame);
     c.removeEventListener("contextmenu", flagBomb);
 
-    let p = document.createElement("p");
-    p.innerHTML = message;
-    p.id = "message";
+    stopTimer();
 
-    c.parentElement.appendChild(p);
+    document.getElementById("message").innerHTML = message;
 }
 
 let colorCell = (x, y, color) => {
@@ -159,6 +184,9 @@ let revealTile = (x, y) => {
 
 let playGame = (e) => {
     console.log("game")
+
+    if(nVisited == 0) startTimer();
+
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
 

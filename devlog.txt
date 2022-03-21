@@ -154,3 +154,8 @@ ellaK -- 2022-03-17 10:53
 lewiscassL -- 2022-03-18 09:00
 - victory/lose message
 - clear message on reset board
+
+lewiscassL -- 2022-03-20 21:45
+- created timer system
+- timer starts on first click, ends on win/lose
+- TODO: port global score variable back to python
