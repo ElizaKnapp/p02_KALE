@@ -180,3 +180,7 @@ lewiscassL -- 2022-03-21 09:20
 - bug fixes for setup
 - consistency for index/dashboard
 - replace setup/clear with a restart button
+
+elizak -- 2022-03-21 09:22
+- fixed login bug
+- added levels for login
