@@ -166,10 +166,13 @@ elizak -- 2022-03-18 9:25
 
 ellaK -- 2022-03-18 09:36
 - finished formatting for everything that was there
-- deployed app
+- made droplet work
 
 ellaK -- 2022-03-18 14:05
 - did some formatting for level buttons
+
+ellaK -- 2022-03-19 14:30
+- started work on app deployment
 
 lewiscassL -- 2022-03-20 21:45
 - created timer system
@@ -184,3 +187,6 @@ lewiscassL -- 2022-03-21 09:20
 elizak -- 2022-03-21 09:22
 - fixed login bug
 - added levels for login
+
+ellaK -- 2022-03-21 09:24
+- worked on deployment more
