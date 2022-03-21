@@ -26,10 +26,19 @@ def index():
        response with the session username passed in. '''
 
     # Renders response if there is a user logged in, else render login page
+    method = request.method
+    if method == 'GET':
+        return render_template("index.html", board = B.generate_board(10), isLoggedIn=False)
 
-    # to be replaced with the generate random lists of boards function in board.py
-    board = B.generate_board(10)
-    print(board)
+    level = 10
+    x = request.form.get('level')
+    try:
+        level = int(x)
+    except:
+        level = 10
+    
+    print(level)
+    board = B.generate_board(level)
 
     if 'username' in session:
         return render_template('dashboard.html', board = board, isLoggedIn = True, username = session["username"])
@@ -49,12 +58,13 @@ def authenticate():
 
     # Variables
     method = request.method
-    username = request.form.get('username')
-    password = request.form.get('password')
 
     # Get vs Post
     if method == 'GET':
         return render_template("login.html")
+
+    username = request.form.get('username')
+    password = request.form.get('password')
 
     auth_state = user.auth_user(username, password)
     if auth_state == True:
@@ -142,9 +152,9 @@ def create_board():
     except:
         return render_template('create.html', message="Please enter a valid number")
 
-    if (size < 5):
+    if (size < 5 or size > 25):
         print("running")
-        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
+        return render_template('create.html', size=size, message = "Your board must between sizes 5 and 25!", select=False)
 
     return render_template('create.html', size = size, select = True)
 
@@ -204,3 +214,12 @@ def play_usermade_board():
     board = [[int(num) for num in row] for row in board]
 
     return render_template('play_usermade_board.html', board = board, username = username)
+
+
+@app.route("/dashboard/<username>", methods=['GET', 'POST'])
+def dashboard(username):
+    ''' Displays currently logged in user's dashboard '''
+
+    boards = B.find_boards(username)
+
+    return render_template('otherdashboard.html', username=username, boards=boards)
