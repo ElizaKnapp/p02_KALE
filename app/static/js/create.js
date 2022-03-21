@@ -27,34 +27,36 @@ for (let i = 0; i < size; i++) {
 var setup = () => {
   ctx.strokeStyle = 'black';
   ctx.lineWidth = 2;
+
   // vertical lines
   for (let i = 0; i < size; i += 1) {
-    var inc = c.clientWidth / size;
-    ctx.beginPath();
-    ctx.moveTo(i * inc, 0);
-    ctx.lineTo(i * inc, 400);
-    ctx.stroke();
+      let inc = c.clientWidth / size;
+      ctx.beginPath();
+      ctx.moveTo(i * inc, 0);
+      ctx.lineTo(i * inc, c.clientHeight);
+      ctx.stroke();
   }
   // horizontal lines
   for (let i = 0; i < size; i += 1) {
-    var inc = c.clientHeight / size;
-    ctx.beginPath();
-    ctx.moveTo(0, i * inc);
-    ctx.lineTo(400, i * inc);
-    ctx.stroke();
+      let inc = c.clientHeight / size;
+      ctx.beginPath();
+      ctx.moveTo(0, i * inc);
+      ctx.lineTo(c.clientWidth, i * inc);
+      ctx.stroke();
   }
 
   c.addEventListener("click", playGame);
 };
 
-var colorCell = (x, y) =>{
-    var boxWidth = (c.clientWidth / size);
-    var boxHeight = (c.clientHeight / size)
-    ctx.fillStyle = "red"
-    ctx.fillRect(x * boxWidth, y * boxHeight, boxWidth, boxHeight)
+let colorCell = (x, y) => {
+    let borderWidth = 2;
+    let boxWidth = (c.clientWidth / size);
+    let boxHeight = (c.clientHeight / size);
+    ctx.fillStyle = "red";
 
-    // make the red square a bomb!
-    board[x][y] = 1
+    ctx.fillRect(x * boxWidth + borderWidth/2, y * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
+
+    board[y][x] = 1;
 }
 
 

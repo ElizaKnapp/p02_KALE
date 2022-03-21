@@ -1,4 +1,4 @@
-#Name — Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee
+##Name — Andrew Juang, Eliza Knapp, Ella Krechmer, Lucas Lee
 #Softdev
 #P02: Client-Side Shenanigans
 #2022-03-09
@@ -53,14 +53,13 @@ def authenticate():
 
     # Variables
     method = request.method
+    username = request.form.get('username')
+    password = request.form.get('password')
 
     # Get vs Post
     if method == 'GET':
         print("here")
         return render_template("login.html")
-
-    username = request.form.get('username')
-    password = request.form.get('password')
 
     auth_state = user.auth_user(username, password)
     if auth_state == True:
@@ -149,9 +148,9 @@ def create_board():
     except:
         return render_template('create.html', message="Please enter a valid number")
 
-    if (size < 5 or size > 25):
+    if (size < 5):
         print("running")
-        return render_template('create.html', size=size, message = "Your board must between sizes 5 and 25!", select=False)
+        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
 
     return render_template('create.html', size = size, select = True)
 
