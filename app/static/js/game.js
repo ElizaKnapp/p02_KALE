@@ -185,14 +185,17 @@ let revealTile = (x, y) => {
 
 let playGame = (e) => {
     console.log("game")
-
-    if(nVisited == 0) startTimer();
-
     let mouseX = e.offsetX;
     let mouseY = e.offsetY;
 
     let cellX = Math.floor(mouseX / (c.clientWidth / size));
     let cellY = Math.floor(mouseY / (c.clientHeight / size));
+
+    if(nVisited == 0) {
+        // board = generate_board(cellX, cellY);
+        startTimer();
+    }
+
 
     let status = getCellStatus(cellX, cellY);
 
@@ -202,6 +205,38 @@ let playGame = (e) => {
         colorCell(cellX, cellY, "red");
         endGame("You Lose!");
     }
+
+};
+
+let generate_board = (x, y) => {
+    console.log("generating")
+
+    let board_var = Array(size).fill().map(()=>Array(size).fill(0))
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            board_var[i][j] = 0
+        }
+    }
+
+    num_mines = 10
+    if (size < 15) {
+        num_mines = size
+    } else if (size < 20) {
+        num_mines = size * 2
+    } else if (size < 40) {
+        num_mines = size * 4
+    }
+
+    for (let i = 0; i < num_mines; i++) {
+        x_hat = Math.floor(Math.random() * size)
+        y_hat = Math.floor(Math.random() * size)
+        board_var[y_hat][x_hat] = 1
+    }
+
+    board_var[y][x] = 0
+
+    console.log(board_var)
+    return board_var
 
 };
 
