@@ -24,12 +24,7 @@ def index():
 
     ''' Display login page if there is no username in session, else display the
        response with the session username passed in. '''
-
-    # Renders response if there is a user logged in, else render login page
-    method = request.method
-    if method == 'GET':
-        return render_template("index.html", board = B.generate_board(10), isLoggedIn=False)
-
+    
     level = 10
     x = request.form.get('level')
     try:
@@ -61,6 +56,7 @@ def authenticate():
 
     # Get vs Post
     if method == 'GET':
+        print("here")
         return render_template("login.html")
 
     username = request.form.get('username')
@@ -75,6 +71,7 @@ def authenticate():
     elif auth_state == "bad_user":
         return render_template('login.html', input="bad_user")
     elif auth_state == "not_found":
+        print("here")
         return render_template('login.html')
 
 @app.route("/register")
