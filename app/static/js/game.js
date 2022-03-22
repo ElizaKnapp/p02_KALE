@@ -218,6 +218,11 @@ let playGame = (e) => {
         console.log("lose");
         colorCell(cellX, cellY, "red");
         endGame("You Lose!");
+
+        for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
+            if(getCellStatus(x, y) == 1 && !flagged[y][x]) colorCell(x, y, "red");
+            if(flagged[y][x] && getCellStatus(x, y) == 0) colorCell(x, y, "blue");
+        }
     }
 
 };

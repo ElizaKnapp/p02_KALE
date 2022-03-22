@@ -203,3 +203,6 @@ ellaK -- 2022-03-22 08:59
 lewiscassL -- 2022-03-22 09:15
 - updated blank tile format
 - changed setup to wait for window load
+
+lewiscassL -- 2022-03-22 12:15
+- reveal bombs and misplaced flags on game end
