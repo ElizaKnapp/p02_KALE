@@ -215,3 +215,7 @@ andrewJ -- 2022-03-22 09:15
 
 lewiscassL -- 2022-03-22 12:15
 - reveal bombs and misplaced flags on game end
+
+andrewJ -- 2022-03-22 16:15
+- fixed you win / you lose message colors
+- added bomb images
