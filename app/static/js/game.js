@@ -167,7 +167,7 @@ let revealTile = (x, y) => {
     }
     else if(sum <= 8) imageCell(x, y, sum);
 
-    if(nVisited == nSafe && get_num_flagged() == nBombs){
+    if(nVisited == nSafe){
         console.log("win");
         endGame("You Win!");
     }
@@ -287,12 +287,6 @@ let flagBomb = (e) => {
             flagged[cellY][cellX] = false;
             colorCell(cellX, cellY, "white");
         }
-    }
-
-    // now check if it's the last flag
-    if(nVisited == nSafe && get_num_flagged() == nBombs){
-        console.log("win");
-        endGame("You Win!");
     }
 
 }
