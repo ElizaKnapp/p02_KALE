@@ -14,35 +14,31 @@ let visited = [...Array(size)].map(e => Array(size).fill(false));
 let flagged = [...Array(size)].map(e => Array(size).fill(false));
 
 let nVisited = 0;
+
 let nBombs = 0;
-for (let row of board){
-    const count = row.filter(Boolean).length;
-    nBombs += count;
-}
-let nSafe = size*size - nBombs;
+let nSafe = 0;
 
 let getCellStatus = (x, y) => {
     return board[y][x];
 };
+
 let nums = [...Array(size)].map(e => Array(size).fill(0));
+
 let calculateNum = (x, y) => {
     let sum = 0;
     let check = [-1, 0, 1];
     for (let dx of check)
-        for (let dy of check) {
-            if (x + dx >= 0 && x + dx < size && y + dy >= 0 && y + dy < size) {
-                sum += getCellStatus(x + dx, y + dy);
-            }
+    for (let dy of check) {
+        if (x + dx >= 0 && x + dx < size && y + dy >= 0 && y + dy < size) {
+            sum += getCellStatus(x + dx, y + dy);
         }
+    }
     return sum;
-}
-
-for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
-    nums[y][x] = calculateNum(x, y);
 }
 
 const borderWidth = 2;
 let imgArr = [];
+
 for(let i = 1; i < 9; i++){
     imgArr[i] = new Image();
     imgArr[i].src = `static/img/${i}.png`;
@@ -81,11 +77,7 @@ let clear = (e) => {
 
     nVisited = 0;
     nBombs = 0;
-    for (let row of board){
-        const count = row.filter(Boolean).length;
-        nBombs += count;
-    }
-    nSafe = size*size - nBombs;
+    nSafe = 0;
 
     stopTimer();
     document.getElementById("message").innerHTML = "";
@@ -144,7 +136,7 @@ let colorCell = (x, y, color) => {
 }
 
 let imageCell = (x, y, num) => {
-    console.log("image", x, y, num);
+    // console.log("image", x, y, num);
     let boxWidth = (c.clientWidth / size);
     let boxHeight = (c.clientHeight / size);
 
@@ -153,7 +145,7 @@ let imageCell = (x, y, num) => {
 }
 
 let revealTile = (x, y) => {
-    console.log(x, y);
+    // console.log(x, y);
     let status = getCellStatus(x, y);
 
     if (status == 1 || visited[y][x]) return;
@@ -175,12 +167,24 @@ let revealTile = (x, y) => {
     }
     else if(sum <= 8) imageCell(x, y, sum);
 
-    if(nVisited == nSafe){
+    if(nVisited == nSafe && get_num_flagged() == nBombs){
         console.log("win");
         endGame("You Win!");
     }
 
 }
+
+let get_num_flagged = (e) => {
+    let count = 0;
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            if (flagged[i][j]) {
+                count += 1;
+            }
+        }
+    }
+    return count;
+};
 
 
 let playGame = (e) => {
@@ -192,7 +196,7 @@ let playGame = (e) => {
     let cellY = Math.floor(mouseY / (c.clientHeight / size));
 
     if(nVisited == 0) {
-        // board = generate_board(cellX, cellY);
+        generate_board(cellX, cellY);
         startTimer();
     }
 
@@ -208,35 +212,55 @@ let playGame = (e) => {
 
 };
 
+
 let generate_board = (x, y) => {
     console.log("generating")
 
-    let board_var = Array(size).fill().map(()=>Array(size).fill(0))
+    board = Array(size).fill().map(()=>Array(size).fill(0))
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-            board_var[i][j] = 0
+            board[i][j] = 0
         }
     }
 
-    num_mines = 10
+    // the +2 bombs are for the bombs that might be lost in adjustment
+    num_mines = 12
     if (size < 15) {
-        num_mines = size
+        num_mines = size + 2
     } else if (size < 20) {
-        num_mines = size * 2
+        num_mines = size * 2 + 2
     } else if (size < 40) {
-        num_mines = size * 4
+        num_mines = size * 4 + 2
     }
 
     for (let i = 0; i < num_mines; i++) {
         x_hat = Math.floor(Math.random() * size)
         y_hat = Math.floor(Math.random() * size)
-        board_var[y_hat][x_hat] = 1
+        board[y_hat][x_hat] = 1
     }
 
-    board_var[y][x] = 0
+    let check = [-1, 0, 1];
+    for (let dx of check) {
+        for (let dy of check) {
+            board[y + dy][x + dx] = 0;
+        }
+    }
+    
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            if (board[i][j] == 1) {
+                nBombs += 1;
+            }
+        }
+    }
 
-    console.log(board_var)
-    return board_var
+    nSafe = size*size - nBombs;
+
+
+    for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
+        nums[y][x] = calculateNum(x, y);
+    }
+
 
 };
 
