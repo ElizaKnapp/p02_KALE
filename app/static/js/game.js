@@ -183,6 +183,7 @@ let get_num_flagged = (e) => {
             }
         }
     }
+    console.log(flagged);
     console.log("number of flags:" + count);
     return count;
 };
@@ -287,6 +288,13 @@ let flagBomb = (e) => {
             colorCell(cellX, cellY, "white");
         }
     }
+
+    // now check if it's the last flag
+    if(nVisited == nSafe && get_num_flagged() == nBombs){
+        console.log("win");
+        endGame("You Win!");
+    }
+
 }
 
 setup();

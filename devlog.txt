@@ -190,3 +190,8 @@ elizak -- 2022-03-21 09:22
 
 ellaK -- 2022-03-21 09:24
 - worked on deployment more
+
+elizak -- 2022-03-21 10:17
+- boards auto generate on click
+- fixed end game bug so that it didn't end prematurely
+- fixed end game bug so that you can win if your last click is a flag
