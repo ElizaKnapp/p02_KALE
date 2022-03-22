@@ -201,7 +201,9 @@ elizak -- 2022-03-21 10:17
 
 ellaK -- 2022-03-22 08:59
 - fixed formatting for easy/medium/hard buttons
-- all formatting for project complete
+- changed some fonts
+- changed what shows up in navbar on some pages
+- changed loss/win message formatting
 
 lewiscassL -- 2022-03-22 09:15
 - updated blank tile format
