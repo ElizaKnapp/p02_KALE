@@ -191,6 +191,9 @@ elizak -- 2022-03-21 09:22
 ellaK -- 2022-03-21 09:24
 - worked on deployment more
 
+andrewJ -- 2022-03-21 10:00
+- deployed our app
+
 elizak -- 2022-03-21 10:17
 - boards auto generate on click
 - fixed end game bug so that it didn't end prematurely
@@ -203,3 +206,7 @@ ellaK -- 2022-03-22 08:59
 lewiscassL -- 2022-03-22 09:15
 - updated blank tile format
 - changed setup to wait for window load
+
+andrewJ -- 2022-03-22 09:15
+- can see boards when not logged in
+- added new number images
