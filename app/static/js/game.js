@@ -138,9 +138,11 @@ let endGame = (message) => {
 
     stopTimer();
 
-
-
-    document.getElementById("message").innerHTML = message;
+    if (message === "You Win!") {
+        document.getElementById("message1").innerHTML = message;
+    } else {
+        document.getElementById("message").innerHTML = message;
+    }
 }
 
 let colorCell = (x, y, color) => {
@@ -180,7 +182,7 @@ let revealTile = (x, y) => {
     }
     else if(sum <= 8) imageCell(x, y, sum);
 
-    if(nVisited == nSafe && get_num_flagged() == nBombs){
+    if(nVisited == nSafe){
         console.log("win");
         endGame("You Win!");
     }
