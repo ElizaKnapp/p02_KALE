@@ -5,10 +5,14 @@
 #2022-03-09
 */
 
+let restartButton = document.getElementById("restart");
 let c = document.getElementById("board");
 let ctx = c.getContext("2d");
 
-let restartButton = document.getElementById("restart");
+const borderWidth = 2;
+const boxWidth = (c.clientWidth / size);
+const boxHeight = (c.clientHeight / size);
+
 
 let visited = [...Array(size)].map(e => Array(size).fill(false));
 let flagged = [...Array(size)].map(e => Array(size).fill(false));
@@ -36,9 +40,9 @@ let calculateNum = (x, y) => {
     return sum;
 }
 
-const borderWidth = 2;
 let imgArr = [];
-
+imgArr[0] = new Image();
+imgArr[0].src = 'static/img/blank.png';
 for(let i = 1; i < 9; i++){
     imgArr[i] = new Image();
     imgArr[i].src = `static/img/${i}.png`;
@@ -114,6 +118,11 @@ let setup = (e) => {
         ctx.stroke();
     }
 
+    for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
+        console.log("asdf");
+        ctx.drawImage(imgArr[0], x * boxWidth + borderWidth/2, y * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
+    }
+
     c.addEventListener("click", playGame);
     c.addEventListener("contextmenu", flagBomb);
 };
@@ -124,12 +133,13 @@ let endGame = (message) => {
 
     stopTimer();
 
+
+
     document.getElementById("message").innerHTML = message;
 }
 
 let colorCell = (x, y, color) => {
-    let boxWidth = (c.clientWidth / size);
-    let boxHeight = (c.clientHeight / size);
+
     ctx.fillStyle = color;
 
     ctx.fillRect(x * boxWidth + borderWidth/2, y * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
@@ -137,8 +147,6 @@ let colorCell = (x, y, color) => {
 
 let imageCell = (x, y, num) => {
     // console.log("image", x, y, num);
-    let boxWidth = (c.clientWidth / size);
-    let boxHeight = (c.clientHeight / size);
 
     ctx.drawImage(imgArr[num], x * boxWidth + borderWidth/2, y * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
 
@@ -167,7 +175,7 @@ let revealTile = (x, y) => {
     }
     else if(sum <= 8) imageCell(x, y, sum);
 
-    if(nVisited == nSafe){
+    if(nVisited == nSafe && get_num_flagged() == nBombs){
         console.log("win");
         endGame("You Win!");
     }
@@ -247,7 +255,7 @@ let generate_board = (x, y) => {
             board[y + dy][x + dx] = 0;
         }
     }
-    
+
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
             if (board[i][j] == 1) {
@@ -285,11 +293,13 @@ let flagBomb = (e) => {
         }
         else{
             flagged[cellY][cellX] = false;
-            colorCell(cellX, cellY, "white");
+            ctx.drawImage(imgArr[0], cellX * boxWidth + borderWidth/2, cellY * boxHeight + borderWidth/2, boxWidth - borderWidth, boxHeight - borderWidth);
         }
     }
 
 }
 
-setup();
-restartButton.addEventListener("click", setup);
+window.addEventListener('load', () => {
+    setup();
+    restartButton.addEventListener("click", setup);
+})

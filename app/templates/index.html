@@ -26,6 +26,10 @@
             background-color: #8a2d22;
             border: 1px solid #4f120b;
         }
+        h1{
+          font-family: Courier New;
+          font-size: 35px;
+        }
         body{
             font-family: Tahoma;
             background-color: #fffceb;
@@ -74,11 +78,10 @@
     </nav>
 
     <body >
-        <h1 class="header" style="padding-left: 10px; padding-top:10px;"> Welcome to Minesweeper. Start playing below or log in to save progress and create boards.
-        </h1>
+        <h1 class="header" style="padding-left: 10px; padding-top:10px;"> Welcome to Minesweeper </h1>
+        <h4 style="padding-left: 10px;">Start playing below or log in to save progress and create boards.</h4>
     </body>
 
-    <p style="padding-left: 10px;">Play Minesweeper!</p>
 
     <div style="padding-left: 10px; padding-bottom: 5px;">
         <button id="restart" class="btn btn-primary">
@@ -86,18 +89,18 @@
         </button>
     </div>
 
-    <div style="padding-left:10px;">
+    <div class= "btn-group"style="padding-left:10px;">
         <form action="/" method="POST">
             <input type="hidden" name="level" value="10">
-            <button type="submit" id="easy" class="btn btn-primary">Easy</button>
+            <button type="submit" id="easy" class="btn btn-primary" style="border-radius: 0">Easy</button>
         </form>
         <form action="/" method="POST">
             <input type="hidden" name="level" value="17">
-            <button type="submit" id="medium" class="btn btn-primary">Medium</button>
+            <button type="submit" id="medium" class="btn btn-primary" style="border-radius: 0">Medium</button>
         </form>
         <form action="/" method="POST">
             <input type="hidden" name="level" value="20">
-            <button type="submit" id="hard" class="btn btn-primary">Hard</button>
+            <button type="submit" id="hard" class="btn btn-primary" style="border-radius: 0">Hard</button>
         </form>
     </div>
 

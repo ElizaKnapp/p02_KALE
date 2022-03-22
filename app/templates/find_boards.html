@@ -29,6 +29,10 @@
             font-family: Tahoma;
             background-color: #fffceb;
         }
+        h1{
+          font-family: Courier New;
+          font-size: 35px;
+        }
         .navbar .navbar-nav .nav-link {
           background-color: #d48077;
           color: black;
@@ -86,13 +90,19 @@
               <li class="nav-item">
                 <a class="nav-link" href="/find_boards">See Boards</a>
               </li>
+              {% if loggedin %}
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
               </li>
+              {% elif loggedin == False %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+              {% endif %}
             </ul>
         </nav>
 
-        <h1 style="padding-left:10px; padding-top:10px;">Try out some recent boards</h1>
+        <h1 style="padding-left:10px; padding-top:10px;">Try out some recent boards:</h1>
 
         <table class="table table-striped table-hover" style="padding-left:10px;">
           <thead>
