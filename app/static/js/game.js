@@ -183,6 +183,7 @@ let get_num_flagged = (e) => {
             }
         }
     }
+    console.log("number of flags:" + count);
     return count;
 };
 
@@ -254,7 +255,9 @@ let generate_board = (x, y) => {
         }
     }
 
+    console.log("number of bombs: " + nBombs);
     nSafe = size*size - nBombs;
+    console.log("number of safes: " + nSafe);
 
 
     for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
