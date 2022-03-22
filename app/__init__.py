@@ -15,5 +15,5 @@ app.secret_key = urandom(32)
 
 app.debug = True
 
-app.run(host='0.0.0.0')
+app.run()
 # app.run()

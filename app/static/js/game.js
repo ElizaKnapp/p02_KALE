@@ -155,7 +155,7 @@ let revealTile = (x, y) => {
     let sum = nums[y][x];
 
     if(sum == 0) {
-        colorCell(x, y, "grey");
+        colorCell(x, y, "rgb(185, 185, 185)");
 
         let check = [-1, 0, 1];
         for (let dx of check)
