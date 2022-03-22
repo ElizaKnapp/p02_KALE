@@ -47,6 +47,11 @@ for(let i = 1; i < 9; i++){
     imgArr[i] = new Image();
     imgArr[i].src = `static/img/${i}.png`;
 }
+imgArr[9] = new Image();
+imgArr[9].src = 'static/img/flag.png';
+imgArr[10] = new Image();
+imgArr[10].src = 'static/img/bomb.png';
+
 
 let startTime = new Date().getTime();
 let intervalID = -1;
@@ -216,12 +221,18 @@ let playGame = (e) => {
     if (status == 0) revealTile(cellX, cellY);
     else if (status == 1) {
         console.log("lose");
-        colorCell(cellX, cellY, "red");
+        imageCell(cellX, cellY, 10);
         endGame("You Lose!");
 
         for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
-            if(getCellStatus(x, y) == 1 && !flagged[y][x]) colorCell(x, y, "red");
-            if(flagged[y][x] && getCellStatus(x, y) == 0) colorCell(x, y, "blue");
+            if(getCellStatus(x, y) == 1 && !flagged[y][x]) {
+                colorCell(x, y, "red");
+                imageCell(x, y, 10);
+            }
+            if(flagged[y][x] && getCellStatus(x, y) == 0) {
+                colorCell(x, y, "blue");
+                imageCell(x, y, 10);
+            }
         }
     }
 
@@ -294,7 +305,7 @@ let flagBomb = (e) => {
     if (!visited[cellY][cellX]) {
         if(!flagged[cellY][cellX]){
             flagged[cellY][cellX] = true;
-            colorCell(cellX, cellY, "green");
+            imageCell(cellX, cellY, 9)
         }
         else{
             flagged[cellY][cellX] = false;
