@@ -191,6 +191,9 @@ elizak -- 2022-03-21 09:22
 ellaK -- 2022-03-21 09:24
 - worked on deployment more
 
+andrewJ -- 2022-03-21 10:00
+- deployed our app
+
 elizak -- 2022-03-21 10:17
 - boards auto generate on click
 - fixed end game bug so that it didn't end prematurely
@@ -198,11 +201,17 @@ elizak -- 2022-03-21 10:17
 
 ellaK -- 2022-03-22 08:59
 - fixed formatting for easy/medium/hard buttons
-- all formatting for project complete
+- changed some fonts
+- changed what shows up in navbar on some pages
+- changed loss/win message formatting
 
 lewiscassL -- 2022-03-22 09:15
 - updated blank tile format
 - changed setup to wait for window load
+
+andrewJ -- 2022-03-22 09:15
+- can see boards when not logged in
+- added new number images
 
 lewiscassL -- 2022-03-22 12:15
 - reveal bombs and misplaced flags on game end
