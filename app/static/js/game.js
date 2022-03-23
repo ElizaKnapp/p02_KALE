@@ -133,10 +133,23 @@ let endGame = (message) => {
 
     stopTimer();
 
-
-
     document.getElementById("message").innerHTML = message;
+
+    setTimeout(handle_submit_form, 1500);
+    
 }
+
+let handle_submit_form = () => {
+    try {
+        var input = document.forms["register_score"]['score'];
+        console.log(input.value);
+        input.setAttribute('value', score);
+        let form = document.getElementById("register_score");
+        form.submit();
+    } catch(err) {
+        console.log("could not find score thing");
+    }
+};
 
 let colorCell = (x, y, color) => {
 

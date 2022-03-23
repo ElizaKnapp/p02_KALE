@@ -194,7 +194,7 @@ ellaK -- 2022-03-21 09:24
 andrewJ -- 2022-03-21 10:00
 - deployed our app
 
-elizak -- 2022-03-21 10:17
+elizak -- 2022-03-21 22:17
 - boards auto generate on click
 - fixed end game bug so that it didn't end prematurely
 - fixed end game bug so that you can win if your last click is a flag
@@ -215,3 +215,7 @@ andrewJ -- 2022-03-22 09:15
 
 lewiscassL -- 2022-03-22 12:15
 - reveal bombs and misplaced flags on game end
+
+elizak -- 2022-03-22 21:39
+- score now submits in the see boards function
+- see register_score endpoint for the score

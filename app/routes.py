@@ -218,3 +218,15 @@ def dashboard(username):
     boards = B.find_boards(username)
 
     return render_template('otherdashboard.html', username=username, boards=boards)
+
+@app.route("/register_score", methods=['GET', 'POST'])
+def register_score():
+    if 'username' not in session:
+        return render_template('login.html')
+    method = request.method
+    if method == 'GET':
+        return redirect(url_for('index'))
+    score = request.form.get('score')
+    print(score)
+
+    return redirect(url_for('index'))
