@@ -71,7 +71,7 @@ def generate_board(size):
 def get_boards():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER PRIMARY KEY AUTOINCREMENT);")
     c.execute("SELECT * FROM boards")
     board = c.fetchall()
     board = board[::-1]
@@ -85,7 +85,7 @@ def find_boards(username):
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER PRIMARY KEY AUTOINCREMENT);")
     c.execute("SELECT * FROM boards")
     board = c.fetchall()
     board = board[::-1]
@@ -99,7 +99,7 @@ def get_leaderboard(id):
     ''' returns the all of the board, author, size of a specific user'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER PRIMARY KEY AUTOINCREMENT);")
     c.execute("SELECT * FROM boards")
     board = c.fetchall()
     board = board[::-1]
