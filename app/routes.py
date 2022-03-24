@@ -220,9 +220,10 @@ def dashboard(username):
 def leaderboard(id):
     ''' Displays leaderboard of a given board '''
 
-    leaderboard = B.get_leaderboard(id)
+    leaderboard = json.loads(B.get_leaderboard(id))
+    leaderboard.sort()
 
-    return render_template('leaderboard.html', leaderboard = [("bob",10), ("bill",30)])
+    return render_template('leaderboard.html', leaderboard = leaderboard)
 
 @app.route("/register_score", methods=['GET', 'POST'])
 def register_score():
