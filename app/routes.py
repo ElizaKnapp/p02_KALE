@@ -203,12 +203,13 @@ def play_usermade_board():
 
     board = request.form.get("board")
     username = request.form.get("username")
+    id = request.form.get("boardID")
     print(board)
 
     board = json.loads(board)
     board = [[int(num) for num in row] for row in board]
 
-    return render_template('play_usermade_board.html', board = board, username = username)
+    return render_template('play_usermade_board.html', board = board, username = username, id = id)
 
 
 @app.route("/dashboard/<username>", methods=['GET', 'POST'])
@@ -227,6 +228,9 @@ def register_score():
     if method == 'GET':
         return redirect(url_for('index'))
     score = request.form.get('score')
-    print(score)
+    id = request.form.get('id')
+
+    print('score', score)
+    print('id', id)
 
     return redirect(url_for('index'))
