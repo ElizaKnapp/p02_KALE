@@ -182,7 +182,7 @@ def submit_create_board():
 @app.route("/find_boards", methods=['GET', 'POST'])
 def see():
     # FIX FORMATTING
-    boards = B.get_last5_boards()
+    boards = B.get_boards()
     if 'username' not in session:
         return render_template('find_boards.html', boards = boards, loggedin = False)
     # each element of the list is a tuple

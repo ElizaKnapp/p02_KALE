@@ -68,7 +68,7 @@ def generate_board(size):
     return board
 
 
-def get_last5_boards():
+def get_boards():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
@@ -76,7 +76,7 @@ def get_last5_boards():
     board = c.fetchall()
     board = board[::-1]
     things = []
-    for size, board, leaderboard, author, id in board[:5]:
+    for size, board, leaderboard, author, id in board[:]:
         things.append((board, author, size, id))
     return things
 
@@ -117,4 +117,5 @@ def get_leaderboard(id):
 # c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
 # c.execute("SELECT * FROM boards")
 # board = c.fetchall()
+# print(board)
 # print(find_boards("andrew"))
