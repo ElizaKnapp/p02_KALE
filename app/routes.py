@@ -236,5 +236,6 @@ def register_score():
 
     print('score', score)
     print('id', id)
+    B.add_score(id, session['username'], score)
 
     return redirect(url_for('index'))

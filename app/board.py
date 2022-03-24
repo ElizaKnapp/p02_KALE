@@ -109,6 +109,18 @@ def get_leaderboard(id):
             things = leaderboard
     return things
 
+def add_score(id, user, score):
+    # adds a specific user and score to a board's leaderboard
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+    c.execute("SELECT * FROM boards WHERE uniqueID = (?);", (id,))
+    board = c.fetchall()
+    current_leaderboard = json.loads(board[0][2])
+    to_add = (user, score)
+    current_leaderboard.append(to_add)
+    c.execute("INSERT INTO boards WHERE uniqueID = (?) VALUES (?)")
+    print(board)
 
 # TESTING
 # Board(2, "andre", [])
