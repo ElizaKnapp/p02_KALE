@@ -13,7 +13,7 @@ class Board:
     def __init__(self, size, author, board = -1):
         self.db = sqlite3.connect(DB_FILE)
         self.c = self.db.cursor()
-        self.c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER PRIMARY KEY);")
+        self.c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER PRIMARY KEY AUTOINCREMENT);")
 
         self.size = size
 
@@ -29,7 +29,7 @@ class Board:
 
         print("ran the init")
 
-        self.c.execute("INSERT INTO boards VALUES (?, ?, ?, ?, NULL);", (size, json.dumps(self.board), json.dumps(self.leaderboard), author))
+        self.c.execute("INSERT INTO boards VALUES (?, ?, ?, ?, null);", (size, json.dumps(self.board), json.dumps(self.leaderboard), author))
         self.db.commit()
 
     def custom_board(size, level, x, y):
