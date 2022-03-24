@@ -233,3 +233,6 @@ andrewJ -- 2022-03-23 23:30
 - linked together leaderboard stuff
 - fix board size generation bug
 
+elizak -- 2022-03-24 00:45
+- leaderboard is now pushed and retrived from db
+
