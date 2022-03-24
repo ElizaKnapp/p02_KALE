@@ -22,18 +22,6 @@ let first = true;
 let nBombs = 0;
 let nSafe = 0;
 
-for (let i = 0; i < size; i++) {
-    for (let j = 0; j < size; j++) {
-        if (board[i][j] == 1) {
-            nBombs += 1;
-        }
-    }
-}
-
-console.log("number of bombs: " + nBombs);
-nSafe = size*size - nBombs;
-console.log("number of safes: " + nSafe);
-
 let getCellStatus = (x, y) => {
     return board[y][x];
 };
@@ -98,7 +86,18 @@ let clear = (e) => {
 
     first = true;
 
-    if(!usermade) nBombs = 0;
+    nBombs = 0;
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            if (board[i][j] == 1) {
+                nBombs++;
+            }
+        }
+    }
+
+    console.log("number of bombs: " + nBombs);
+    nSafe = size*size - nBombs;
+    console.log("number of safes: " + nSafe);
 
     stopTimer();
     document.getElementById("message").innerHTML = "";
