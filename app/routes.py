@@ -177,11 +177,7 @@ def submit_create_board():
     # db_board now has to go to the database
     board_obj = B.Board(size, session['username'], db_board)
 
-    # then a random board is created to return to dashboard
-    # TODO: replace with the generate random lists of boards function in board.py
-    board = [[0,0,0,1],[0,1,0,1],[0,1,0,1],[0,1,0,1]]
-
-    return render_template('dashboard.html', board = board, message="Board Created Successfully!")
+    return redirect(url_for('index'))
 
 @app.route("/find_boards", methods=['GET', 'POST'])
 def see():
