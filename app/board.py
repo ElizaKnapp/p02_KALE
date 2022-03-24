@@ -13,7 +13,7 @@ class Board:
     def __init__(self, size, author, board = -1):
         self.db = sqlite3.connect(DB_FILE)
         self.c = self.db.cursor()
-        self.c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")
+        self.c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER PRIMARY KEY);")
 
         self.size = size
 
@@ -27,13 +27,11 @@ class Board:
         self.leaderboard = []
         self.author = author
 
-        id = 1 # to be randomly generated
-
         print("ran the init")
 
-        self.c.execute("INSERT INTO boards VALUES (?, ?, ?, ?, ?);", (size, json.dumps(self.board), json.dumps(self.leaderboard), author, id))
+        self.c.execute("INSERT INTO boards VALUES (?, ?, ?, ?, NULL);", (size, json.dumps(self.board), json.dumps(self.leaderboard), author))
         self.db.commit()
-        
+
     def custom_board(size, level, x, y):
         pass
 
@@ -51,7 +49,7 @@ class Board:
     def update_leaderboard(leaderboard):
         ''' Updates the leaderboard '''
 
-        
+
 def generate_board(size):
     ''' Generates a board (numpy array) of a certain size '''
     board = [[0 for i in range(size)] for j in range(size)]
@@ -79,12 +77,12 @@ def get_last5_boards():
     board = board[::-1]
     things = []
     for size, board, leaderboard, author, id in board[:5]:
-        things.append((board, author, size))
+        things.append((board, author, size, id))
     return things
-    
+
 def find_boards(username):
     ''' returns the all of the board, author, size of a specific user'''
-    
+
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("CREATE TABLE IF NOT EXISTS boards (size INTEGER, board TEXT, leaderboard TEXT, author TEXT, uniqueID INTEGER);")

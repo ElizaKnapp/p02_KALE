@@ -17,10 +17,22 @@ const boxHeight = (c.clientHeight / size);
 let visited = [...Array(size)].map(e => Array(size).fill(false));
 let flagged = [...Array(size)].map(e => Array(size).fill(false));
 
-let nVisited = 0;
+let first = true;
 
 let nBombs = 0;
 let nSafe = 0;
+
+for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+        if (board[i][j] == 1) {
+            nBombs += 1;
+        }
+    }
+}
+
+console.log("number of bombs: " + nBombs);
+nSafe = size*size - nBombs;
+console.log("number of safes: " + nSafe);
 
 let getCellStatus = (x, y) => {
     return board[y][x];
@@ -84,12 +96,11 @@ let clear = (e) => {
     visited = [...Array(size)].map(e => Array(size).fill(false));
     flagged = [...Array(size)].map(e => Array(size).fill(false));
 
-    nVisited = 0;
-    nBombs = 0;
-    nSafe = 0;
+    first = true;
 
     stopTimer();
     document.getElementById("message").innerHTML = "";
+    document.getElementById("message1").innerHTML = "";
     document.getElementById("timer").innerHTML = "";
 
 
@@ -138,18 +149,13 @@ let endGame = (message) => {
 
     stopTimer();
 
-<<<<<<< HEAD
-    document.getElementById("message").innerHTML = message;
-
     setTimeout(handle_submit_form, 1500);
-    
-=======
+
     if (message === "You Win!") {
         document.getElementById("message1").innerHTML = message;
     } else {
         document.getElementById("message").innerHTML = message;
     }
->>>>>>> b70ebd0d4b6cf41d08a5606e971815d4b2dff113
 }
 
 let handle_submit_form = () => {
@@ -184,7 +190,6 @@ let revealTile = (x, y) => {
 
     if (status == 1 || visited[y][x]) return;
     visited[y][x] = true;
-    nVisited++;
 
     let sum = nums[y][x];
 
@@ -200,11 +205,6 @@ let revealTile = (x, y) => {
             }
     }
     else if(sum <= 8) imageCell(x, y, sum);
-
-    if(nVisited == nSafe){
-        console.log("win");
-        endGame("You Win!");
-    }
 
 }
 
@@ -231,15 +231,27 @@ let playGame = (e) => {
     let cellX = Math.floor(mouseX / (c.clientWidth / size));
     let cellY = Math.floor(mouseY / (c.clientHeight / size));
 
-    if(nVisited == 0) {
+    if(first && !usermade) {
         generate_board(cellX, cellY);
         startTimer();
+        first = false;
     }
 
+    if(flagged[cellY][cellX]) return;
 
     let status = getCellStatus(cellX, cellY);
 
-    if (status == 0) revealTile(cellX, cellY);
+    if (status == 0) {
+        revealTile(cellX, cellY);
+
+        let t = 0;
+        for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
+            if(visited[y][x]) t++;
+        }
+
+        if(t == nSafe) endGame("You Win!");
+
+    }
     else if (status == 1) {
         console.log("lose");
         imageCell(cellX, cellY, 10);

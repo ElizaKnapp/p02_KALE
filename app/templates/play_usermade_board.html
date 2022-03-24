@@ -96,11 +96,8 @@
     <h1 style="padding:10px;">Play {{username}}'s board!</h1>
 
     <div style="padding-left: 10px; padding-bottom: 5px;">
-        <button id="setup" class="btn btn-primary">
-            Setup
-        </button>
-        <button id="clear" class="btn btn-primary">
-            Clear
+        <button id="restart" class="btn btn-primary">
+            Restart
         </button>
     </div>
 
@@ -119,7 +116,7 @@
 
     <script type="text/javascript">
         var board = {{board|tojson}}
-
+        var usermade = true;
         var size = board.length;
     </script>
 

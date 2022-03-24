@@ -24,14 +24,14 @@ def index():
 
     ''' Display login page if there is no username in session, else display the
        response with the session username passed in. '''
-    
+
     level = 10
     x = request.form.get('level')
     try:
         level = int(x)
     except:
         level = 10
-    
+
     print(level)
     board = B.generate_board(level)
 

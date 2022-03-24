@@ -223,3 +223,8 @@ andrewJ -- 2022-03-22 16:15
 elizak -- 2022-03-22 21:39
 - score now submits in the see boards function
 - see register_score endpoint for the score
+
+lewiscassL -- 2022-03-23 22:30
+- bugfixes with game ending early
+- bugfixes with usermade boards being overridden
+- made boardIDs autoincrement
