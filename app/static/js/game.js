@@ -138,18 +138,12 @@ let endGame = (message) => {
 
     stopTimer();
 
-<<<<<<< HEAD
-    document.getElementById("message").innerHTML = message;
-
-    setTimeout(handle_submit_form, 1500);
-    
-=======
     if (message === "You Win!") {
         document.getElementById("message1").innerHTML = message;
     } else {
         document.getElementById("message").innerHTML = message;
     }
->>>>>>> b70ebd0d4b6cf41d08a5606e971815d4b2dff113
+    setTimeout(handle_submit_form, 1500);
 }
 
 let handle_submit_form = () => {
