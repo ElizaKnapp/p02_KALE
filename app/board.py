@@ -109,8 +109,6 @@ def get_leaderboard(id):
             things = leaderboard
     return things
 
-'''
-'''
 def add_score(id, user, score):
     # adds a specific user and score to a board's leaderboard
     db = sqlite3.connect(DB_FILE)

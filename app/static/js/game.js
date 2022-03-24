@@ -22,6 +22,18 @@ let first = true;
 let nBombs = 0;
 let nSafe = 0;
 
+for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+        if (board[i][j] == 1) {
+            nBombs += 1;
+        }
+    }
+}
+
+console.log("number of bombs: " + nBombs);
+nSafe = size*size - nBombs;
+console.log("number of safes: " + nSafe);
+
 let getCellStatus = (x, y) => {
     return board[y][x];
 };
@@ -86,18 +98,7 @@ let clear = (e) => {
 
     first = true;
 
-    nBombs = 0;
-    for (let i = 0; i < size; i++) {
-        for (let j = 0; j < size; j++) {
-            if (board[i][j] == 1) {
-                nBombs++;
-            }
-        }
-    }
-
-    console.log("number of bombs: " + nBombs);
-    nSafe = size*size - nBombs;
-    console.log("number of safes: " + nSafe);
+    if(!usermade) nBombs = 0;
 
     stopTimer();
     document.getElementById("message").innerHTML = "";
@@ -156,7 +157,6 @@ let endGame = (message) => {
     } else {
         document.getElementById("message").innerHTML = message;
     }
-
 }
 
 let handle_submit_form = () => {

@@ -221,7 +221,14 @@ def leaderboard(id):
     ''' Displays leaderboard of a given board '''
 
     leaderboard = json.loads(B.get_leaderboard(id))
-    leaderboard.sort()
+    print(leaderboard)
+    i = 0
+    while i < len(leaderboard):
+        if leaderboard[i][1] == '0':
+            leaderboard.remove(leaderboard[i])
+            i -= 1
+        i += 1
+    print(leaderboard)
 
     return render_template('leaderboard.html', leaderboard = leaderboard)
 
@@ -237,6 +244,7 @@ def register_score():
 
     print('score', score)
     print('id', id)
-    B.add_score(id, session['username'], score)
+    if (score != '0'):
+        B.add_score(id, session['username'], score)
 
     return redirect(url_for('index'))
