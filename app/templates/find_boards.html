@@ -114,40 +114,40 @@
             {% elif loggedin == False %}
             <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
+              </li>
+              {% endif %}
+            </ul>
+        </nav>
 
-    <h1 style="padding-left:10px; padding-top:10px;">Try out some recent boards:</h1>
+        <h1 style="padding-left:10px; padding-top:10px;">Try out some recent boards:</h1>
 
-    <table class="table table-striped table-hover" style="padding-left:10px;">
-        <thead>
-            <tr>
-                <th scope="col">Board</th>
-                <th scope="col">Created By</th>
-                <th scope="col">Size</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for board in boards %}
-            <tr>
-                <th scope="row">
+        <table class="table table-striped table-hover" style="padding-left:10px;">
+          <thead>
+              <tr>
+                  <th scope="col">Board</th>
+                  <th scope="col">Created By</th>
+                  <th scope="col">Size</th>
+                  <th scope="col">Leaderboard</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for board in boards %}
+              <tr>
+                  <th scope="row">
                     <form action="/play_usermade_board" method="POST">
                         <input type="hidden" name="board" value="{{board[0]}}">
                         <input type="hidden" name="username" value="{{board[1]}}">
                         <input type="hidden" name="boardID" value="{{board[3]}}">
                         <button type="submit" class="btn btn-primary" value="Play me!">Play me!</button>
                     </form>
-                </th>
-                <td><a href="{{'/dashboard/%s' % board[1]}}">{{board[1]}}</a></td>
-                <td>{{board[2]}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <script src="/static/js/create.js"></script>
+                  </th>
+                  <td><a href="{{'/dashboard/%s' % board[1]}}">{{board[1]}}</a></td>
+                  <td>{{board[2]}}</td>
+                  <td><a href="{{'/leaderboard/%s' % board[3]}}">Leaderboard</a></td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
 
 </body>
 

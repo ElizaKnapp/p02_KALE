@@ -148,9 +148,9 @@ def create_board():
     except:
         return render_template('create.html', message="Please enter a valid number")
 
-    if (size < 5):
+    if (size < 5 or size > 25):
         print("running")
-        return render_template('create.html', size=size, message = "Your board must be size 5 or larger!", select=False)
+        return render_template('create.html', size=size, message = "Your board must be between sizes 5 and 25!", select=False)
 
     return render_template('create.html', size = size, select = True)
 
@@ -219,6 +219,14 @@ def dashboard(username):
     boards = B.find_boards(username)
 
     return render_template('otherdashboard.html', username=username, boards=boards)
+
+@app.route("/leaderboard/<id>", methods=['GET', 'POST'])
+def leaderboard(id):
+    ''' Displays leaderboard of a given board '''
+
+    leaderboard = B.get_leaderboard(id)
+
+    return render_template('leaderboard.html', leaderboard = [("bob",10), ("bill",30)])
 
 @app.route("/register_score", methods=['GET', 'POST'])
 def register_score():
