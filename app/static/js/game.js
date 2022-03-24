@@ -98,6 +98,8 @@ let clear = (e) => {
 
     first = true;
 
+    if(!usermade) nBombs = 0;
+
     stopTimer();
     document.getElementById("message").innerHTML = "";
     document.getElementById("message1").innerHTML = "";
@@ -253,6 +255,8 @@ let playGame = (e) => {
             if(visited[y][x]) t++;
         }
 
+        console.log("t", t, "nsafe", nSafe);
+
         if(t == nSafe) endGame("You Win!");
 
     }
@@ -309,6 +313,7 @@ let generate_board = (x, y) => {
         }
     }
 
+    nbombs = 0;
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
             if (board[i][j] == 1) {
