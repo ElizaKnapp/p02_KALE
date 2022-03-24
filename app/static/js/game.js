@@ -152,10 +152,11 @@ let endGame = (message) => {
 
     if (message === "You Win!") {
         document.getElementById("message1").innerHTML = message;
+        setTimeout(handle_submit_form, 1500);
     } else {
         document.getElementById("message").innerHTML = message;
     }
-    setTimeout(handle_submit_form, 1500);
+
 }
 
 let handle_submit_form = () => {
