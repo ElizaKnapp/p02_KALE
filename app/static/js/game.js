@@ -230,8 +230,13 @@ let playGame = (e) => {
     let cellX = Math.floor(mouseX / (c.clientWidth / size));
     let cellY = Math.floor(mouseY / (c.clientHeight / size));
 
-    if(first && !usermade) {
-        generate_board(cellX, cellY);
+    if(first) {
+        if(!usermade) generate_board(cellX, cellY);
+
+        for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
+            nums[y][x] = calculateNum(x, y);
+        }
+
         startTimer();
         first = false;
     }
@@ -315,11 +320,6 @@ let generate_board = (x, y) => {
     console.log("number of bombs: " + nBombs);
     nSafe = size*size - nBombs;
     console.log("number of safes: " + nSafe);
-
-
-    for(let y = 0; y < size; y++) for(let x = 0; x < size; x++){
-        nums[y][x] = calculateNum(x, y);
-    }
 
 
 };
